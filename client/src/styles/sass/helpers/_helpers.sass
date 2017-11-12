@@ -1,0 +1,62 @@
+.flex__container
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+
+.container
+  @extend %row
+  @extend %vertical-align-top
+  margin: 0 auto
+  padding: 0 15px
+
+.text-center
+  text-align: center
+
+.show
+  display: block
+
+.hide
+  display: none
+
+.text-center
+  text-align: center
+
+.text-left
+  text-align: left
+
+.text-right
+  text-align: right
+
+.absolute
+  position: absolute
+
+.relative
+  position: relative
+
+.in-block
+  display: inline-block
+
+.center-block
+  margin: 0 auto
+  display: block
+
+.img-responsive
+  max-width: 100%
+
+.clearfix
+  &:before,
+  &:after
+    content: ""
+    display: table
+
+*, :after, :before
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+.input-group
+  display: flex
+
+a
+  &:hover
+    cursor: pointer
