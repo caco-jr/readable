@@ -5,7 +5,11 @@ const Header = () => {
     return (
         <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Seja bem vindo desbravador.</h1>
+            <p>
+                <a href="https://twitter.com/cacojr_" target="_blank" rel="noopener noreferrer">
+                    @cacojr_
+                </a>
+            </p>
         </header>
     )
 }

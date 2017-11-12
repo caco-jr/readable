@@ -1,8 +1,8 @@
 import React from 'react';
-import Intro from './components/Intro'
+import Categories from './components/Categories'
 
 const Home = () => (
-    <Intro />
+    <Categories />
 );
 
 export default Home;
