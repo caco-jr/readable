@@ -5,8 +5,18 @@ import * as actionTypes from "./actionTypes";
 
 export function getCategories() {
     return dispatch => {
-        ReadableAPI.getCategories().then(categories =>
-            dispatch({ type: actionTypes.GET_CATEGORIES, categories })
-        );
+        ReadableAPI.getCategories()
+            .then(categories =>
+                dispatch({ type: actionTypes.GET_CATEGORIES, categories })
+            );
     };
+}
+
+export function getPosts() {
+    return dispatch => {
+        ReadableAPI.getPosts()
+            .then(posts =>
+                dispatch({ type: actionTypes.GET_POSTS, posts })
+            );
+    }
 }

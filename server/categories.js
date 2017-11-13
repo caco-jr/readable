@@ -10,16 +10,12 @@ const defaultData = {
       path: 'react'
     },
     {
-      name: 'vue',
-      path: 'vue'
+      name: 'redux',
+      path: 'redux'
     },
     {
-      name: 'inferno',
-      path: 'inferno'
-    },
-    {
-      name: 'angular',
-      path: 'angular'
+      name: 'udacity',
+      path: 'udacity'
     }
   ]
 }
