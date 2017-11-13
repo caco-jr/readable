@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { getPosts } from '../../../../services/session/actions'
+import { getPosts } from '../../../../services/redux/actions'
 import Post from '../../../../components/Post'
 
 class PostList extends PureComponent {
@@ -13,7 +13,7 @@ class PostList extends PureComponent {
         console.log(posts)
 
         return (
-            <section>
+            <section className="container">
                 {
                     Object.keys(posts).length > 0 && (
                         posts.allPosts.map(

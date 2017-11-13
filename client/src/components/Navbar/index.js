@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getCategories } from '../../../../services/session/actions'
+import { getCategories } from '../../services/redux/actions'
 
-class Categories extends PureComponent {
+class Navbar extends PureComponent {
     componentDidMount() {
         this.props.getCategories();
     }
@@ -11,17 +12,21 @@ class Categories extends PureComponent {
         const { categories } = this.props;
 
         return (
-            <div>
+            <nav>
                 {
                     Object.keys(categories).length > 0 && (
                         categories.allCategories.map(
                             (categorie, index) => (
-                                <span key={index} > {categorie.name} </span>
+                                <NavLink key={index} to={categorie.path} >
+                                    <span>
+                                        {categorie.name}
+                                    </span>
+                                </NavLink>
                             )
                         )
                     )
                 }
-            </div>
+            </nav>
         )
     }
 }
@@ -38,4 +43,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

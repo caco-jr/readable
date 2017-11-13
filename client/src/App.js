@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Main from './Main';
+import Routes from './Routes';
 import Header from './components/Header';
+import Navbar from './components/Navbar'
 import './styles/sass/main.css';
 
 class App extends Component {
@@ -8,7 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main />
+        <Navbar />
+        <Routes />
       </div>
     );
   }

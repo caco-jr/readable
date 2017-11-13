@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './scenes/Home'
 
-const Main = () => (
+const Routes = () => (
     <main>
         <Switch>
             <Route exact path="/" component={Home} />
@@ -10,4 +10,4 @@ const Main = () => (
     </main>
 );
 
-export default Main;
+export default Routes;
