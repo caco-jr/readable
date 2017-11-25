@@ -5,10 +5,10 @@
   width: 100%
 
 .container
-  @extend %row
-  @extend %vertical-align-top
-  margin: 0 auto
-  padding: 0 15px
+  @include make-container
+
+.row
+  @include make-row
 
 .text-center
   text-align: center

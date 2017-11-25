@@ -9,18 +9,20 @@ class PostList extends PureComponent {
     }
 
     render() {
-        const { posts } = this.props
+        const { posts } = this.props;
         console.log(posts)
 
         return (
             <section className="container">
-                {
-                    Object.keys(posts).length > 0 && (
-                        posts.allPosts.map(
-                            post => <Post {...post} key={post.id} />
+                <section className="row">
+                    {
+                        Object.keys(posts).length > 0 && (
+                            posts.allPosts.map(
+                                post => <Post {...post} key={post.id} />
+                            )
                         )
-                    )
-                }
+                    }
+                </section>
             </section>
         )
     }
