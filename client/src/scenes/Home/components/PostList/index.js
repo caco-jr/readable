@@ -13,7 +13,7 @@ class PostList extends PureComponent {
         console.log(posts)
 
         return (
-            <section className="container">
+            <section className="container post__list">
                 <section className="row">
                     {
                         Object.keys(posts).length > 0 && (

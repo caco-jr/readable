@@ -1,0 +1,11 @@
+@keyframes shake {
+	33% {
+		@include prefix( 'transform', 'rotateZ(10deg)' );
+	}
+	67% {
+		@include prefix( 'transform', 'rotateZ(-10deg)' );
+	}
+	100% {
+		@include prefix( 'transform', 'rotateZ(10deg)' );
+	}
+}

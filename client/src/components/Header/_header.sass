@@ -1,9 +1,25 @@
-.App-header
-  background-color: #222
+.header
+  background-color: $primary-color
   height: 150px
   padding: 20px
   color: white
   margin-bottom: 30px
+
+  .container
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  *
+    color: #fff
+
+  .creator__username
+    text-decoration: none
+    padding: 5px 15px
+    background: $secondary-color
+    border-radius: $border-radius
+    justify-self: flex-end
 
 @keyframes App-logo-spin
   from
