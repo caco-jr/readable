@@ -1,8 +1,16 @@
 import { combineReducers } from 'redux'
 import {
     GET_CATEGORIES,
-    GET_POSTS
+    GET_POSTS,
+    SET_SELECTED
 } from '../actions/actionTypes'
+
+const select = {
+    category: {
+        path: ''
+    },
+    post: {}
+}
 
 function categories(state = {}, action) {
     switch (action.type) {
@@ -30,7 +38,23 @@ function posts(state = {}, action) {
     }
 }
 
+function selected(state = select, action) {
+    const { who, object } = action;
+
+    switch (action.type) {
+        case SET_SELECTED:
+            return {
+                ...state,
+                [who]: object
+            };
+
+        default:
+            return { ...state };
+    }
+}
+
 export default combineReducers({
     categories,
-    posts
+    posts,
+    selected
 });

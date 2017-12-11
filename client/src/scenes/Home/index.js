@@ -4,7 +4,7 @@ import PostDetails from '../../components/PostDetails'
 
 const Home = () => [
     <PostList key={"postList"} />,
-    <PostDetails />
+    <PostDetails key={"postDetails"} />
 ];
 
 export default Home;

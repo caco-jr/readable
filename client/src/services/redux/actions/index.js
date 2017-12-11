@@ -20,3 +20,9 @@ export function getPosts() {
             );
     }
 }
+
+export function setSelected(who, object) {
+    return dispatch => {
+        dispatch({ type: actionTypes.SET_SELECTED, who, object })
+    };
+}
