@@ -26,3 +26,21 @@ export function setSelected(who, object) {
         dispatch({ type: actionTypes.SET_SELECTED, who, object })
     };
 }
+
+export function downVotePost(postID) {
+    return dispatch => {
+        ReadableAPI.downVotePost(postID)
+            .then(post =>
+                dispatch({ type: actionTypes.DOWN_VOTE_POST, post })
+            );
+    }
+}
+
+export function upVotePost(postID) {
+    return dispatch => {
+        ReadableAPI.upVotePost(postID)
+            .then(post =>
+                dispatch({ type: actionTypes.UP_VOTE_POST, post })
+            );
+    }
+}

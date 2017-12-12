@@ -33,6 +33,8 @@ function posts(state = {}, action) {
                 allPosts: action.posts
             };
 
+        // TODO: Fazer o "Up" e "Down" Votes
+
         default:
             return { ...state }
     }
