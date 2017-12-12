@@ -1,25 +1,27 @@
-import React, { PureComponent } from 'react'
-import { getPosts } from '../../services/api/ReadableAPI';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { setSelected } from '../../services/redux/actions';
 
 class PostDetails extends PureComponent {
     render() {
+        console.log(this.props)
+        const { body } = this.props.selected.post;
+
         return (
             <h1>
-                Olá
+                {body}
             </h1>
         )
     }
 }
 
-function mapStateToProps({ posts }) {
-    return { posts }
+function mapStateToProps({ selected }) {
+    return { selected }
 }
 
-// TODO: Pegar o Post Id, do Item da Lista Clicado.
 function mapDispatchToProps({ dispatch }) {
     return {
-        getPosts: () => dispatch(getPosts())
+        setSelected: (who, object) => dispatch(setSelected(who, object))
     }
 }
 
