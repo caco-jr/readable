@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setSelected } from '../../services/redux/actions';
+import { setSelected, downVotePost, upVotePost } from '../../services/redux/actions';
 
-const Post = ({ post, setSelected, selected }) => {
+const Post = ({ post, posts, setSelected, selected, downVotePost, upVotePost }) => {
     const {
         title,
         commentCount,
         voteScore,
-        body
+        body,
+        id
     } = post;
 
     return (
@@ -18,9 +19,9 @@ const Post = ({ post, setSelected, selected }) => {
             <span> {`Número de comentários: ${commentCount}`} </span>
 
             <section>
-                <button > - </button>
+                <button onClick={() => downVotePost(id)} > - </button>
                 {voteScore}
-                <button> + </button>
+                <button onClick={() => upVotePost(id)} > + </button>
             </section>
         </section>
     )
@@ -36,7 +37,9 @@ function mapStateToProps({ selected }) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setSelected: (who, object) => dispatch(setSelected(who, object))
+        setSelected: (who, object) => dispatch(setSelected(who, object)),
+        upVotePost: (postID) => dispatch(upVotePost(postID)),
+        downVotePost: (postID) => dispatch(downVotePost(postID)),
     }
 }
 

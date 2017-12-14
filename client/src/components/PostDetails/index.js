@@ -4,7 +4,6 @@ import { setSelected } from '../../services/redux/actions';
 
 class PostDetails extends PureComponent {
     render() {
-        console.log(this.props)
         const { body } = this.props.selected.post;
 
         return (

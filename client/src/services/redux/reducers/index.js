@@ -2,7 +2,9 @@ import { combineReducers } from 'redux'
 import {
     GET_CATEGORIES,
     GET_POSTS,
-    SET_SELECTED
+    SET_SELECTED,
+    UP_VOTE_POST,
+    DOWN_VOTE_POST
 } from '../actions/actionTypes'
 
 const select = {
@@ -33,7 +35,31 @@ function posts(state = {}, action) {
                 allPosts: action.posts
             };
 
-        // TODO: Fazer o "Up" e "Down" Votes
+        case UP_VOTE_POST:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .map(post => {
+                        if (post.id === action.post.id) {
+                            post.voteScore = action.post.voteScore
+                        }
+                        return post
+                    })
+                    .sort((a, b) => a.voteScore < b.voteScore)
+            }
+
+        case DOWN_VOTE_POST:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .map(post => {
+                        if (post.id === action.post.id) {
+                            post.voteScore = action.post.voteScore
+                        }
+                        return post
+                    })
+                    .sort((a, b) => a.voteScore < b.voteScore)
+            };
 
         default:
             return { ...state }
