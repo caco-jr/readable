@@ -1,15 +1,20 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { setSelected } from '../../services/redux/actions';
+import Comments from '../Comments'
 
 class PostDetails extends PureComponent {
     render() {
         const { body } = this.props.selected.post;
 
         return (
-            <h1>
-                {body}
-            </h1>
+            <section className="details" >
+                <h1>
+                    {body}
+                </h1>
+
+                <Comments />
+            </section>
         )
     }
 }
