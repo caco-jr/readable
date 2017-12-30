@@ -1,11 +1,15 @@
 import React from 'react';
 import logo from '../../images/logo.svg';
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <header className="header">
             <section className="container">
-                <img src={logo} className="App-logo" alt="logo" />
+
+                <Link to={"/"} >
+                    <img src={logo} className="App-logo" alt="logo" />
+                </Link>
 
                 <a
                     className="creator__username"

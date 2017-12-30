@@ -1,12 +1,20 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getComments } from '../../services/api/ReadableAPI'
+import { getComments } from '../../../../services/api/ReadableAPI'
 import Comment from './Comment';
 
 class Comments extends PureComponent {
     state = {
         comments: []
+    }
+
+    componentDidMount() {
+        const { id } = this.props.selected.post
+
+        getComments(id).then(
+            comments => this.setState({ comments })
+        )
     }
 
     componentWillReceiveProps(nextProps) {
@@ -35,6 +43,10 @@ class Comments extends PureComponent {
             </Fragment>
         )
     }
+}
+
+Comments.propTypes = {
+    selected: PropTypes.object.isRequired
 }
 
 function mapStateToProps({ selected }) {
