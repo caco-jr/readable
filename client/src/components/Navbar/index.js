@@ -14,7 +14,7 @@ class Navbar extends PureComponent {
         return (
             <nav className="navbar" >
                 <section className="container" >
-                    <ul className="row navbar__list" >
+                    <ul className="navbar__list" >
                         {
                             Object.keys(categories).length > 0 && (
                                 categories.allCategories.map(

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
 import { setSelected } from '../../services/redux/actions';
 
-const Post = ({ post, posts, setSelected, selected, history }) => {
+const CardPost = ({ post, posts, setSelected, selected, history }) => {
     const {
         title,
         commentCount,
@@ -18,14 +18,14 @@ const Post = ({ post, posts, setSelected, selected, history }) => {
 
     return (
         <section className="card__post" onClick={() => changeRoute()} >
-            <h3> {title} </h3>
-            <p> {body} </p>
-            <span> {`Número de comentários: ${commentCount}`} </span>
+            <h3 className="card__post--title" > {title} </h3>
+            <p className="card__post--description"> {body} </p>
+            <span className="card__post--comment" > {`Número de comentários: ${commentCount}`} </span>
         </section>
     )
 }
 
-Post.propTypes = {
+CardPost.propTypes = {
     post: PropTypes.object.isRequired
 };
 
@@ -39,4 +39,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Post));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardPost));

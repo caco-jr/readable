@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { getPosts } from '../../../../services/redux/actions'
-import Post from '../../../../components/Post'
+import CardPost from '../../../../components/CardPost'
 
 class PostList extends PureComponent {
     componentDidMount() {
@@ -17,7 +17,7 @@ class PostList extends PureComponent {
                     {
                         Object.keys(posts).length > 0 && (
                             posts.allPosts.map(
-                                post => <Post post={post} key={post.id} />
+                                post => <CardPost post={post} key={post.id} />
                             )
                         )
                     }
