@@ -6,39 +6,38 @@ import Comment from './Comment';
 
 class Comments extends PureComponent {
     state = {
-        comments: []
+        showComments: false,
+        comments: [],
     }
 
-    componentDidMount() {
+    handleComment = () => {
         const { id } = this.props.selected.post
+
+        this.setState({ showComments: true })
 
         getComments(id).then(
             comments => this.setState({ comments })
         )
     }
 
-    componentWillReceiveProps(nextProps) {
-        const { id } = nextProps.selected.post
-        const { post } = this.props.selected
-
-        if (post.id !== id) {
-            getComments(id).then(
-                comments => this.setState({ comments })
-            )
-        }
-    }
-
     render() {
-        const { comments } = this.state
+        const { comments, showComments } = this.state;
+        const { commentCount } = this.props.selected.post;
 
         return (
             <Fragment>
                 {
-                    comments.map(
-                        comment => (
-                            <Comment key={comment.id} {...comment} />
+                    showComments === false ? (
+                        <button type="button" onClick={this.handleComment} >
+                            {`Mostrar os ${commentCount} comentários`}
+                        </button>
+                    ) : (
+                            comments.map(
+                                comment => (
+                                    <Comment key={comment.id} {...comment} />
+                                )
+                            )
                         )
-                    )
                 }
             </Fragment>
         )
@@ -53,4 +52,4 @@ function mapStateToProps({ selected }) {
     return { selected }
 }
 
-export default connect(mapStateToProps, '')(Comments)
+export default connect(mapStateToProps, null)(Comments)

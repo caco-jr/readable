@@ -29,26 +29,28 @@ class PostDetails extends PureComponent {
     }
 
     render() {
-        const { title, body, voteScore, id } = this.props.selected.post;
+        const { title, body, voteScore, id, commentCount } = this.props.selected.post;
         const { downVotePost, upVotePost } = this.props;
 
         return (
             <section className="details" >
-                <h1>
-                    {title}
-                </h1>
+                <section className="container">
+                    <h1>
+                        {title}
+                    </h1>
 
-                <p>
-                    {body}
-                </p>
+                    <p>
+                        {body}
+                    </p>
 
-                <section>
-                    <button onClick={() => downVotePost(id)} > - </button>
-                    {voteScore}
-                    <button onClick={() => upVotePost(id)} > + </button>
+                    <section>
+                        <button onClick={() => downVotePost(id)} > - </button>
+                        {voteScore}
+                        <button onClick={() => upVotePost(id)} > + </button>
+                    </section>
+
+                    {commentCount > 0 && <Comments />}
                 </section>
-
-                <Comments />
             </section>
         )
     }

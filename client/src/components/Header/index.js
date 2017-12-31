@@ -1,22 +1,28 @@
 import React from 'react';
-import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom'
+import twitter from './images/twitter.svg';
+import logo from './images/logo.svg'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <header className="header">
             <section className="container">
 
-                <Link to={"/"} >
-                    <img src={logo} className="App-logo" alt="logo" />
+                <Link to={"/"} className="logo" >
+                    <span className="logo--text" > READABLE </span>
+                    <img className="logo--image" src={logo} alt="logo" />
                 </Link>
 
                 <a
-                    className="creator__username"
+                    className="creator__twitter"
                     href="https://twitter.com/cacojr_"
                     target="_blank"
                     rel="noopener noreferrer">
-                    @cacojr_
+                    <span className="creator__twitter--text" >
+                        @cacojr_
+                    </span>
+
+                    <img className="creator__twitter--image" src={twitter} alt="twitter" />
                 </a>
             </section>
         </header>

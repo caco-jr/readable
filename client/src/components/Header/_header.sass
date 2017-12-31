@@ -1,6 +1,6 @@
 .header
-  background-color: $primary-color
-  height: 90px
+  @include background-linear
+  height: 60px
   color: white
 
   .container
@@ -12,19 +12,36 @@
   *
     color: #fff
 
-  .creator__username
+  .logo
     text-decoration: none
-    padding: 5px 15px
-    background: $secondary-color
-    border-radius: $border-radius
+
+    &--text
+      font-weight: 700
+      font-size: 18px
+
+    &--image
+      max-width: 20px
+
+  .creator__twitter
+    text-decoration: none
     justify-self: flex-end
+    position: relative
+    width: 120px
+    display: flex
+    align-items: center
+    justify-content: space-between
 
-@keyframes App-logo-spin
-  from
-    transform: rotate(0deg)
-  to
-    transform: rotate(360deg)
+    &--text
+      position: relative
 
-.App-logo
-  animation: App-logo-spin infinite 20s linear
-  height: 80px
+      &:after
+        content: ""
+        width: 1.5px
+        height: 25px
+        background: #fff
+        position: absolute
+        right: -15px
+        top: -5px
+
+    &--image
+      max-width: 25px

@@ -19,6 +19,11 @@
   &::-webkit-input-placeholder
     @content
 
+@mixin background-linear
+  background: $secondary-color
+  background: -webkit-linear-gradient(to right, #2865B0, $secondary-color)
+  background: linear-gradient(to right, #2865B0, $secondary-color)
+
 %title
   padding-bottom: 15px
   border-bottom: 1px solid $primary-color
