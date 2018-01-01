@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getComments } from '../../../../services/api/ReadableAPI'
@@ -25,10 +25,10 @@ class Comments extends PureComponent {
         const { commentCount } = this.props.selected.post;
 
         return (
-            <Fragment>
+            <section className="comment card" >
                 {
                     showComments === false ? (
-                        <button type="button" onClick={this.handleComment} >
+                        <button type="button" className="comment__button" onClick={this.handleComment} >
                             {`Mostrar os ${commentCount} comentários`}
                         </button>
                     ) : (
@@ -39,7 +39,7 @@ class Comments extends PureComponent {
                             )
                         )
                 }
-            </Fragment>
+            </section>
         )
     }
 }

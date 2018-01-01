@@ -33,8 +33,8 @@ class PostDetails extends PureComponent {
         const { downVotePost, upVotePost } = this.props;
 
         return (
-            <section className="details" >
-                <section className="container">
+            <section className="container">
+                <section className="details card" >
                     <h1>
                         {title}
                     </h1>
@@ -48,9 +48,9 @@ class PostDetails extends PureComponent {
                         {voteScore}
                         <button onClick={() => upVotePost(id)} > + </button>
                     </section>
-
-                    {commentCount > 0 && <Comments />}
                 </section>
+
+                {commentCount > 0 && <Comments />}
             </section>
         )
     }

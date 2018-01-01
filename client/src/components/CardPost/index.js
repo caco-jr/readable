@@ -17,7 +17,7 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
     }
 
     return (
-        <section className="card__post" onClick={() => changeRoute()} >
+        <section className="card__post card" onClick={() => changeRoute()} >
             <h3 className="card__post--title" > {title} </h3>
             <p className="card__post--description"> {body} </p>
             <span className="card__post--comment" > {`Número de comentários: ${commentCount}`} </span>
