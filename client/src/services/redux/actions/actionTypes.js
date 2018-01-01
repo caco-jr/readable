@@ -17,3 +17,4 @@ export const DELETE_COMMENT = "DELETE_COMMENT";
 export const EDIT_POST = "EDIT_POST";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+export const GET_POSTS_CATEGORY = "GET_POSTS_CATEGORY";

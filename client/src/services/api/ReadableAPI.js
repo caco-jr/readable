@@ -99,6 +99,11 @@ export const getCategories = () =>
         .then(res => res.json())
         .catch(error => error);
 
+export const getPostsCategory = (category) =>
+    fetch(`${api}/${category}/posts`, { headers })
+        .then(res => res.json())
+        .catch(error => error);
+
 export const editPost = (post) =>
     fetch(`${api}/posts/${post.id}`, {
         method: "PUT",

@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import {
-    GET_CATEGORIES,
     GET_POSTS,
+    GET_CATEGORIES,
+    GET_POSTS_CATEGORY,
     SET_SELECTED,
     UP_VOTE_POST,
     DOWN_VOTE_POST
@@ -14,13 +15,24 @@ const select = {
     post: {}
 }
 
-function categories(state = {}, action) {
+const category = {
+    allCategories: [],
+    postsCategory: [],
+}
+
+function categories(state = category, action) {
     switch (action.type) {
         case GET_CATEGORIES:
             return {
                 ...state,
                 allCategories: action.categories.categories
             };
+
+        case GET_POSTS_CATEGORY:
+            return {
+                ...state,
+                postsCategory: action.posts
+            }
 
         default:
             return { ...state };

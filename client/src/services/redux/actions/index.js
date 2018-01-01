@@ -12,6 +12,15 @@ export function getCategories() {
     };
 }
 
+export function getPostsCategory(category) {
+    return dispatch => {
+        ReadableAPI.getPostsCategory(category)
+            .then(posts =>
+                dispatch({ type: actionTypes.GET_POSTS_CATEGORY, posts })
+            );
+    }
+}
+
 export function getPosts() {
     return dispatch => {
         ReadableAPI.getPosts()
