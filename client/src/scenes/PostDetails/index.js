@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getPosts, setSelected, downVotePost, upVotePost } from '../../services/redux/actions';
 import Comments from './components/Comments';
+import Related from './components/Related'
 
 class PostDetails extends PureComponent {
     componentDidMount() {
@@ -29,7 +30,7 @@ class PostDetails extends PureComponent {
     }
 
     render() {
-        const { title, body, voteScore, id, commentCount } = this.props.selected.post;
+        const { title, body, voteScore, id, commentCount, category } = this.props.selected.post;
         const { downVotePost, upVotePost } = this.props;
 
         return (
@@ -51,6 +52,8 @@ class PostDetails extends PureComponent {
                 </section>
 
                 {commentCount > 0 && <Comments />}
+
+                <Related category={category} />
             </section>
         )
     }

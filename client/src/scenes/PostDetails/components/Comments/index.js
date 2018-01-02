@@ -52,4 +52,4 @@ function mapStateToProps({ selected }) {
     return { selected }
 }
 
-export default connect(mapStateToProps, null)(Comments)
+export default connect(mapStateToProps)(Comments)

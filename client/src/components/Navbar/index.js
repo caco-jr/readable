@@ -22,7 +22,7 @@ class Navbar extends PureComponent {
                                         <li key={index} className="navbar__list--item">
                                             <NavLink
                                                 className="navbar__list--item-link"
-                                                to={categorie.path} >
+                                                to={`/${categorie.path}`} >
 
                                                 <span>
                                                     {categorie.name}
