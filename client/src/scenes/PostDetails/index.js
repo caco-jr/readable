@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getPosts, setSelected, downVotePost, upVotePost } from '../../services/redux/actions';
 import Comments from './components/Comments';
-import Related from './components/Related'
 
 class PostDetails extends PureComponent {
     componentDidMount() {
@@ -36,7 +35,7 @@ class PostDetails extends PureComponent {
         return (
             <section className="container">
                 <section className="details card" >
-                    <h1>
+                    <h1 className="details--title" >
                         {title}
                     </h1>
 
@@ -49,11 +48,11 @@ class PostDetails extends PureComponent {
                         {voteScore}
                         <button onClick={() => upVotePost(id)} > + </button>
                     </section>
+
+                    <span className="details--category"> {category} </span>
                 </section>
 
                 {commentCount > 0 && <Comments />}
-
-                <Related category={category} />
             </section>
         )
     }

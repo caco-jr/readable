@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
 import { setSelected } from '../../services/redux/actions';
+import chat from './images/chat.svg'
 
 const CardPost = ({ post, posts, setSelected, selected, history }) => {
     const {
         title,
         commentCount,
-        body
+        body,
+        category
     } = post;
 
     const changeRoute = () => {
@@ -19,8 +21,18 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
     return (
         <section className="card__post card" onClick={() => changeRoute()} >
             <h3 className="card__post--title" > {title} </h3>
+
             <p className="card__post--description"> {body} </p>
-            <span className="card__post--comment" > {`Número de comentários: ${commentCount}`} </span>
+
+            <section className="card__post--extra" >
+                <span className="card__post--category"> {category} </span>
+
+                <span className="card__post--comment" >
+                    <img src={chat} alt="comment" className="card__post--comment-icon" />
+
+                    {commentCount}
+                </span>
+            </section>
         </section>
     )
 }
