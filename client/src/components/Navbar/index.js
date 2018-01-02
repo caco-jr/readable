@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getCategories } from '../../services/redux/actions'
+import home from './images/home.svg'
 
 class Navbar extends PureComponent {
     componentDidMount() {
@@ -15,6 +16,14 @@ class Navbar extends PureComponent {
             <nav className="navbar" >
                 <section className="container" >
                     <ul className="navbar__list" >
+                        <li key="homeMenu" className="navbar__list--item">
+                            <NavLink
+                                className="navbar__list--item-link"
+                                to="/">
+                                <img src={home} alt="home" width="20px" />
+                            </NavLink>
+                        </li>
+
                         {
                             Object.keys(categories).length > 0 && (
                                 categories.allCategories.map(
