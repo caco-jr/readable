@@ -47,6 +47,15 @@ function posts(state = {}, action) {
                 allPosts: action.posts
             };
 
+        // case EDIT_POST:
+        //     return {
+        //         ...state,
+        //         allPosts: state.allPosts
+        //             .filter(post => post.id !== action.editedPost.id)
+        //             .concat([action.editedPost])
+        //             .sort((a, b) => a.voteScore < b.voteScore)
+        //     };
+
         case UP_VOTE_POST:
             return {
                 ...state,
