@@ -34,7 +34,7 @@ class Comments extends PureComponent {
                     ) : (
                             comments.map(
                                 comment => (
-                                    <Comment key={comment.id} {...comment} />
+                                    <Comment key={comment.id} comment={comment} />
                                 )
                             )
                         )
