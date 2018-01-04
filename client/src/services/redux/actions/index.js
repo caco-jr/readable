@@ -36,6 +36,16 @@ export function setSelected(who, object) {
     };
 }
 
+export function editPost(post) {
+    return dispatch => {
+        ReadableAPI.editPost(post)
+            .then(
+            editPost =>
+                dispatch({ type: actionTypes.EDIT_POST, editPost })
+            )
+    }
+}
+
 export function downVotePost(postID) {
     return dispatch => {
         ReadableAPI.downVotePost(postID)

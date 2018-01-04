@@ -5,6 +5,7 @@ import {
     GET_POSTS_CATEGORY,
     SET_SELECTED,
     UP_VOTE_POST,
+    EDIT_POST,
     DOWN_VOTE_POST
 } from '../actions/actionTypes'
 
@@ -47,14 +48,14 @@ function posts(state = {}, action) {
                 allPosts: action.posts
             };
 
-        // case EDIT_POST:
-        //     return {
-        //         ...state,
-        //         allPosts: state.allPosts
-        //             .filter(post => post.id !== action.editedPost.id)
-        //             .concat([action.editedPost])
-        //             .sort((a, b) => a.voteScore < b.voteScore)
-        //     };
+        case EDIT_POST:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .filter(post => post.id !== action.editedPost.id)
+                    .concat([action.editedPost])
+                    .sort((a, b) => a.voteScore < b.voteScore)
+            };
 
         case UP_VOTE_POST:
             return {
