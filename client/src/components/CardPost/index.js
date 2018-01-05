@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
 import { setSelected } from '../../services/redux/actions';
+import { truncateString } from '../../services/utils/util'
 import chat from './images/chat.svg'
 
 const CardPost = ({ post, posts, setSelected, selected, history }) => {
@@ -22,7 +23,7 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
         <section className="card__post card" onClick={() => changeRoute()} >
             <h3 className="card__post--title" > {title} </h3>
 
-            <p className="card__post--description"> {body} </p>
+            <p className="card__post--description"> {truncateString(body, 70)} </p>
 
             <section className="card__post--extra" >
                 <span className="card__post--category"> {category} </span>

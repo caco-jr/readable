@@ -29,11 +29,11 @@ class Comments extends PureComponent {
 
                         </button>
                     ) : (
-                            comments.map(
-                                comment => (
+                            comments
+                                .map(comment => (
                                     <Comment key={comment.id} {...comment} />
-                                )
-                            )
+                                ))
+                                .sort((a, b) => a.props.voteScore < b.props.voteScore)
                         )
                 }
             </section>
