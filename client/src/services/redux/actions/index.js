@@ -25,6 +25,16 @@ export function getPosts() {
     return dispatch => {
         ReadableAPI.getPosts()
             .then(posts =>
+                Promise.all(
+                    posts.map(post =>
+                        ReadableAPI
+                            .getComments(post.id)
+                            .then(comments => post.comments = comments)
+                            .then(() => post)
+                    )
+                )
+            )
+            .then(posts =>
                 dispatch({ type: actionTypes.GET_POSTS, posts })
             );
     }
@@ -60,6 +70,24 @@ export function upVotePost(postID) {
         ReadableAPI.upVotePost(postID)
             .then(post =>
                 dispatch({ type: actionTypes.UP_VOTE_POST, post })
+            );
+    }
+}
+
+export function downVoteComment(commentID) {
+    return dispatch => {
+        ReadableAPI.downVoteComment(commentID)
+            .then(comment =>
+                dispatch({ type: actionTypes.DOWN_VOTE_COMMENT, comment })
+            );
+    }
+}
+
+export function upVoteComment(commentID) {
+    return dispatch => {
+        ReadableAPI.upVoteComment(commentID)
+            .then(comment =>
+                dispatch({ type: actionTypes.UP_VOTE_COMMENT, comment })
             );
     }
 }

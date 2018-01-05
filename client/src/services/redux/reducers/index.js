@@ -4,9 +4,11 @@ import {
     GET_CATEGORIES,
     GET_POSTS_CATEGORY,
     SET_SELECTED,
+    DOWN_VOTE_POST,
     UP_VOTE_POST,
     EDIT_POST,
-    DOWN_VOTE_POST
+    DOWN_VOTE_COMMENT,
+    UP_VOTE_COMMENT,
 } from '../actions/actionTypes'
 
 const select = {
@@ -41,6 +43,8 @@ function categories(state = category, action) {
 }
 
 function posts(state = {}, action) {
+    const { comment } = action;
+
     switch (action.type) {
         case GET_POSTS:
             return {
@@ -81,6 +85,45 @@ function posts(state = {}, action) {
                         return post
                     })
                     .sort((a, b) => a.voteScore < b.voteScore)
+            };
+
+        case DOWN_VOTE_COMMENT:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .map(post => {
+                        if (post.id === comment.parentId) {
+                            post.comments = post.comments
+                                .map(commentItem => {
+                                    if (commentItem.id === comment.id) {
+                                        commentItem.voteScore = comment.voteScore
+                                    }
+                                    return commentItem
+                                })
+                                .sort((a, b) => a.voteScore < b.voteScore)
+                        }
+                        return post
+                    })
+
+            };
+
+        case UP_VOTE_COMMENT:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .map(post => {
+                        if (post.id === comment.parentId) {
+                            post.comments = post.comments
+                                .map(commentItem => {
+                                    if (commentItem.id === comment.id) {
+                                        commentItem.voteScore = comment.voteScore
+                                    }
+                                    return commentItem
+                                })
+                                .sort((a, b) => a.voteScore < b.voteScore)
+                        }
+                        return post
+                    })
             };
 
         default:

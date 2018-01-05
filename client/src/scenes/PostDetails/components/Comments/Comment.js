@@ -1,23 +1,27 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
+import { downVoteComment, upVoteComment } from '../../../../services/redux/actions'
 
-class Comment extends PureComponent {
-    render() {
-        const { body, author, voteScore } = this.props.comment;
+const Comment = ({ body, author, voteScore, downVoteComment, upVoteComment, id }) => {
+    return (
+        <section className="comment__item" >
+            <h3> {body} </h3>
+            <p> {author} </p>
 
-        return (
-            <section className="comment__item" >
-                <h3> {body} </h3>
-                <p> {author} </p>
-                <span> {voteScore} </span>
-
-                {/* <section>
-                    <button onClick={() => downVotePost(id)} > - </button>
-                    {voteScore}
-                    <button onClick={() => upVotePost(id)} > + </button>
-                </section> */}
+            <section>
+                <button onClick={() => downVoteComment(id)} > - </button>
+                {voteScore}
+                <button onClick={() => upVoteComment(id)} > + </button>
             </section>
-        )
+        </section>
+    )
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        downVoteComment: (commentID) => dispatch(downVoteComment(commentID)),
+        upVoteComment: (commentID) => dispatch(upVoteComment(commentID)),
     }
 }
 
-export default Comment
+export default connect(null, mapDispatchToProps)(Comment)
