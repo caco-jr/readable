@@ -23,7 +23,7 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
         <section className="card__post card" onClick={() => changeRoute()} >
             <h3 className="card__post--title" > {title} </h3>
 
-            <p className="card__post--description"> {truncateString(body, 70)} </p>
+            <p className="card__post--description"> {truncateString(body, 50)} </p>
 
             <section className="card__post--extra" >
                 <span className="card__post--category"> {category} </span>
