@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getPosts, setSelected, downVotePost, upVotePost } from '../../services/redux/actions';
+import { getTime } from '../../services/utils/util'
 import Comments from './components/Comments';
 
 class PostDetails extends PureComponent {
@@ -29,7 +30,7 @@ class PostDetails extends PureComponent {
     }
 
     render() {
-        const { title, body, voteScore, id, commentCount, category } = this.props.selected.post;
+        const { title, body, voteScore, id, commentCount, category, timestamp } = this.props.selected.post;
         const { downVotePost, upVotePost } = this.props;
 
         return (
@@ -38,6 +39,8 @@ class PostDetails extends PureComponent {
                     <h1 className="details--title" >
                         {title}
                     </h1>
+
+                    <span> {getTime(timestamp)} </span>
 
                     <p>
                         {body}
