@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Comment from './Comment';
+import AddComment from './AddComment'
 
 class Comments extends PureComponent {
     state = {
@@ -18,6 +19,8 @@ class Comments extends PureComponent {
 
         return (
             <section className="comment card" >
+                <AddComment />
+
                 {
                     showComments === false ? (
                         <button
