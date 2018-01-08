@@ -19,13 +19,14 @@ class AddComment extends PureComponent {
         return (
             <section className="comment__add">
                 <form>
-                    <input
-                        type="text"
+                    <textarea
+                        placeholder="Escreva um comentário..."
                         value={value}
                         onChange={this.handleChange} />
 
                     <button
                         type="submit"
+                        className="comment__add--button"
                         onClick={this.handleSubmit} >
                         Comentar
                     </button>
