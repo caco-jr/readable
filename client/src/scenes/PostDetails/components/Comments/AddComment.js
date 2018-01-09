@@ -22,6 +22,7 @@ class AddComment extends PureComponent {
                     <textarea
                         placeholder="Escreva um comentário..."
                         value={value}
+                        className="comment__add--input"
                         onChange={this.handleChange} />
 
                     <button
