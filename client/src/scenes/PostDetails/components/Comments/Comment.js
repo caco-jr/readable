@@ -18,9 +18,15 @@ const Comment = ({
             <p> {author} </p>
 
             <section>
-                <button onClick={() => downVoteComment(id)} > - </button>
+                <button onClick={() => downVoteComment(id)} >
+                    -
+                </button>
+
                 {voteScore}
-                <button onClick={() => upVoteComment(id)} > + </button>
+
+                <button onClick={() => upVoteComment(id)} >
+                    +
+                </button>
             </section>
 
             <span> {getTime(timestamp)} </span>
