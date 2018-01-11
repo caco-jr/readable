@@ -1,40 +1,39 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 
-class AddComment extends PureComponent {
-    state = {
-        value: ''
-    }
+const AddComment = props => {
+    const { handleSubmit } = props;
+    console.log(props)
 
-    handleChange = (event) => {
-        this.setState({ value: event.target.value })
-    }
+    return (
+        <section className="comment__add">
+            <form onSubmit={handleSubmit} >
+                <Field
+                    name="name"
+                    component="input"
+                    type="text"
+                    placeholder="João da Silva"
+                    className="comment__add--input"
+                />
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-    }
+                <Field
+                    name="comment"
+                    component="input"
+                    type="text"
+                    placeholder="Escreva o seu comentário"
+                    className="comment__add--input"
+                />
 
-    render() {
-        const { value } = this.state;
-
-        return (
-            <section className="comment__add">
-                <form>
-                    <textarea
-                        placeholder="Escreva um comentário..."
-                        value={value}
-                        className="comment__add--input"
-                        onChange={this.handleChange} />
-
-                    <button
-                        type="submit"
-                        className="comment__add--button"
-                        onClick={this.handleSubmit} >
-                        Comentar
-                    </button>
-                </form>
-            </section>
-        )
-    }
+                <button
+                    type="submit"
+                    className="comment__add--button" >
+                    Comentar
+                </button>
+            </form>
+        </section>
+    )
 }
 
-export default AddComment;
+export default reduxForm({
+    form: 'commentForm'
+})(AddComment);

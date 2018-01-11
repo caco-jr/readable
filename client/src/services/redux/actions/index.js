@@ -91,3 +91,11 @@ export function upVoteComment(commentID) {
             );
     }
 }
+
+export function addComment(comment) {
+    return dispatch => {
+        ReadableAPI.addComment(comment).then(comment => {
+            dispatch({ type: actionTypes.ADD_COMMENT, comment })
+        });
+    };
+}

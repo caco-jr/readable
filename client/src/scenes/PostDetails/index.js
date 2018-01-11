@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getPosts, setSelected, downVotePost, upVotePost } from '../../services/redux/actions';
 import { getTime } from '../../services/utils/util'
-import Comments from './components/Comments';
+import CommentBox from './components/Comments';
 
 class PostDetails extends PureComponent {
     componentDidMount() {
@@ -55,7 +55,7 @@ class PostDetails extends PureComponent {
                     <span className="details--category"> {category} </span>
                 </section>
 
-                {commentCount > 0 && <Comments />}
+                {commentCount > 0 && <CommentBox />}
             </section>
         )
     }

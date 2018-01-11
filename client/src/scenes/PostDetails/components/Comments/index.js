@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Comment from './Comment';
 import AddComment from './AddComment'
+import { addComment } from '../../../../services/redux/actions/index';
 
-class Comments extends PureComponent {
+class CommentBox extends PureComponent {
     state = {
         showComments: false
     }
@@ -13,13 +14,17 @@ class Comments extends PureComponent {
         this.setState({ showComments: true })
     }
 
+    submit = (values) => {
+        console.log(values)
+    }
+
     render() {
         const { showComments } = this.state;
         const { commentCount, comments } = this.props.selected.post;
 
         return (
             <section className="comment card" >
-                <AddComment />
+                <AddComment onSubmit={this.submit} />
 
                 {
                     showComments === false ? (
@@ -44,7 +49,7 @@ class Comments extends PureComponent {
     }
 }
 
-Comments.propTypes = {
+CommentBox.propTypes = {
     selected: PropTypes.object.isRequired
 }
 
@@ -52,4 +57,10 @@ function mapStateToProps({ selected }) {
     return { selected }
 }
 
-export default connect(mapStateToProps)(Comments)
+function mapDispatchToProps(dispatch) {
+    return {
+        addComment: (comment) => dispatch(addComment(comment)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentBox)

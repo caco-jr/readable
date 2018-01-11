@@ -1,3 +1,4 @@
+import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux'
 import {
     GET_POSTS,
@@ -9,6 +10,7 @@ import {
     EDIT_POST,
     DOWN_VOTE_COMMENT,
     UP_VOTE_COMMENT,
+    ADD_COMMENT,
 } from '../actions/actionTypes'
 
 const select = {
@@ -126,6 +128,18 @@ function posts(state = {}, action) {
                     })
             };
 
+        case ADD_COMMENT:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .map(post => {
+                        if (post.id === comment.parentId) {
+                            post.comments = post.comments.concat([comment])
+                        }
+                        return post
+                    })
+            };
+
         default:
             return { ...state }
     }
@@ -149,5 +163,6 @@ function selected(state = select, action) {
 export default combineReducers({
     categories,
     posts,
-    selected
+    selected,
+    form: formReducer
 });
