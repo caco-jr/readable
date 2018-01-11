@@ -3,13 +3,12 @@ import { Field, reduxForm } from 'redux-form'
 
 const AddComment = props => {
     const { handleSubmit } = props;
-    console.log(props)
 
     return (
         <section className="comment__add">
             <form onSubmit={handleSubmit} >
                 <Field
-                    name="name"
+                    name="author"
                     component="input"
                     type="text"
                     placeholder="João da Silva"
@@ -17,7 +16,7 @@ const AddComment = props => {
                 />
 
                 <Field
-                    name="comment"
+                    name="body"
                     component="input"
                     type="text"
                     placeholder="Escreva o seu comentário"

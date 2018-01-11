@@ -55,7 +55,7 @@ class PostDetails extends PureComponent {
                     <span className="details--category"> {category} </span>
                 </section>
 
-                {commentCount > 0 && <CommentBox />}
+                {commentCount > 0 && <CommentBox parentId={id} />}
             </section>
         )
     }

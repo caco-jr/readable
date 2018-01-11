@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import uuid from 'uuid'
 import Comment from './Comment';
 import AddComment from './AddComment'
 import { addComment } from '../../../../services/redux/actions/index';
@@ -15,12 +16,22 @@ class CommentBox extends PureComponent {
     }
 
     submit = (values) => {
-        console.log(values)
+        const { parentId } = this.props;
+
+        const comment = {
+            id: uuid().split("-").join(""),
+            author: values.author,
+            body: values.body,
+            timestamp: Date.now(),
+            parentId
+        }
+
+        this.props.addComment(comment);
     }
 
     render() {
         const { showComments } = this.state;
-        const { commentCount, comments } = this.props.selected.post;
+        const { comments, commentCount } = this.props.selected.post;
 
         return (
             <section className="comment card" >
