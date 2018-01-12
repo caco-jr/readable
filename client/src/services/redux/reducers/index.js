@@ -11,14 +11,9 @@ import {
     DOWN_VOTE_COMMENT,
     UP_VOTE_COMMENT,
     ADD_COMMENT,
+    ENABLE_EDITING,
+    DISABLE_EDITING,
 } from '../actions/actionTypes'
-
-const select = {
-    category: {
-        path: ''
-    },
-    post: {}
-}
 
 const category = {
     allCategories: [],
@@ -145,6 +140,13 @@ function posts(state = {}, action) {
     }
 }
 
+const select = {
+    category: {
+        path: ''
+    },
+    post: {}
+}
+
 function selected(state = select, action) {
     const { who, object } = action;
 
@@ -160,9 +162,39 @@ function selected(state = select, action) {
     }
 }
 
+const editState = {
+    post: false,
+    comment: false,
+    object: {}
+}
+
+function toggleEditing(state = editState, action) {
+    const { who, object } = action;
+
+    switch (action.type) {
+        case ENABLE_EDITING:
+            return {
+                ...state,
+                [who]: true,
+                object
+            };
+
+        case DISABLE_EDITING:
+            return {
+                ...state,
+                [who]: false,
+                object: {}
+            }
+
+        default:
+            return { ...state };
+    }
+}
+
 export default combineReducers({
     categories,
     posts,
     selected,
+    toggleEditing,
     form: formReducer
 });

@@ -46,6 +46,18 @@ export function setSelected(who, object) {
     };
 }
 
+export function enableEditing(who, object) {
+    return dispatch => {
+        dispatch({ type: actionTypes.ENABLE_EDITING, who, object })
+    }
+}
+
+export function disableEditing(who) {
+    return dispatch => {
+        dispatch({ type: actionTypes.DISABLE_EDITING, who })
+    }
+}
+
 export function editPost(post) {
     return dispatch => {
         ReadableAPI.editPost(post)

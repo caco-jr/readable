@@ -50,7 +50,7 @@ class CommentBox extends PureComponent {
                     ) : (
                             comments
                                 .map(comment => (
-                                    <CommentItem key={comment.id} {...comment} />
+                                    <CommentItem key={comment.id} data={comment} />
                                 ))
                                 .sort((a, b) => a.props.voteScore < b.props.voteScore)
                         )
