@@ -112,6 +112,14 @@ export function addComment(comment) {
     };
 }
 
+export function deleteComment(commentID) {
+    return dispatch => {
+        ReadableAPI.deleteComment(commentID).then(comment =>
+            dispatch({ type: actionTypes.DELETE_COMMENT, comment })
+        );
+    };
+}
+
 export function editComment(comment) {
     return dispatch => {
         ReadableAPI.editComment(comment).then(editedComment => {

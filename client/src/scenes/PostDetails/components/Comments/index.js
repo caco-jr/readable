@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid'
@@ -6,7 +6,7 @@ import CommentItem from './CommentItem';
 import AddComment from './AddComment'
 import { addComment, editComment } from '../../../../services/redux/actions/index';
 
-class CommentBox extends PureComponent {
+class CommentBox extends Component {
     state = {
         showComments: false
     }
@@ -36,6 +36,7 @@ class CommentBox extends PureComponent {
     render() {
         const { showComments } = this.state;
         const { comments, commentCount } = this.props.selected.post;
+        console.log(comments)
 
         return (
             <section className="comment card" >

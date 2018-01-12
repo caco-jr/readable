@@ -6,7 +6,8 @@ import {
     downVoteComment,
     upVoteComment,
     enableEditing,
-    disableEditing
+    disableEditing,
+    deleteComment
 } from '../../../../services/redux/actions'
 
 let CommentItem = props => {
@@ -16,6 +17,7 @@ let CommentItem = props => {
         toggleEditing,
         disableEditing,
         enableEditing,
+        deleteComment,
         handleSubmit,
     } = props;
 
@@ -41,10 +43,10 @@ let CommentItem = props => {
         return toggleEditing.comment && (toggleEditing.object.id === id) ? editable : content
     }
 
-    console.log(props)
-
     return (
         <section className="comment__item" >
+            {console.log(voteScore)}
+
             <form onSubmit={handleSubmit} >
                 <h3>
                     {
@@ -64,19 +66,23 @@ let CommentItem = props => {
                 <p> {author} </p>
 
                 <section>
-                    <button onClick={() => downVoteComment(id)} >
+                    <button type="button" onClick={() => downVoteComment(id)} >
                         -
                     </button>
 
                     {voteScore}
 
-                    <button onClick={() => upVoteComment(id)} >
+                    <button type="button" onClick={() => upVoteComment(id)} >
                         +
                     </button>
                 </section>
 
                 <button onClick={() => handleEdit()} type={editComment("button", "submit")} >
                     {editComment("Salvar", "Editar")}
+                </button>
+
+                <button type="button" onClick={() => deleteComment(id)} >
+                    Apagar
                 </button>
 
                 <span> {getTime(timestamp)} </span>
@@ -97,6 +103,7 @@ function mapDispatchToProps(dispatch) {
         upVoteComment: (commentID) => dispatch(upVoteComment(commentID)),
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
         disableEditing: (who, object) => dispatch(disableEditing(who, object)),
+        deleteComment: (commentID) => dispatch(deleteComment(commentID)),
     }
 }
 

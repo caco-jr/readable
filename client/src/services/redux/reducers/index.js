@@ -11,6 +11,7 @@ import {
     DOWN_VOTE_COMMENT,
     UP_VOTE_COMMENT,
     ADD_COMMENT,
+    DELETE_COMMENT,
     ENABLE_EDITING,
     DISABLE_EDITING,
     EDIT_COMMENT,
@@ -145,10 +146,24 @@ function posts(state = {}, action) {
                 allPosts: state.allPosts
                     .map(post => {
                         if (post.id === comment.parentId) {
-                            post.comments = post.comments.concat([comment])
+                            post.comments = post.comments
+                                .concat([comment])
+                                .sort((a, b) => a.voteScore < b.voteScore)
                         }
                         return post
                     })
+            };
+
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                allPosts: state.allPosts.map(post => {
+                    if (post.id === comment.parentId) {
+                        post.comments = post.comments
+                            .filter(co => co.id !== comment.id)
+                    }
+                    return post
+                })
             };
 
         default:
