@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { downVoteComment, upVoteComment } from '../../../../services/redux/actions'
 import { getTime } from '../../../../services/utils/util'
 
-const Comment = ({
+const CommentItem = ({
     id,
     body,
     author,
@@ -41,4 +41,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Comment)
+export default connect(null, mapDispatchToProps)(CommentItem)

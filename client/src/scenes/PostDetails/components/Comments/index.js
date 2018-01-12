@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid'
-import Comment from './Comment';
+import CommentItem from './CommentItem';
 import AddComment from './AddComment'
 import { addComment } from '../../../../services/redux/actions/index';
 
@@ -50,7 +50,7 @@ class CommentBox extends PureComponent {
                     ) : (
                             comments
                                 .map(comment => (
-                                    <Comment key={comment.id} {...comment} />
+                                    <CommentItem key={comment.id} {...comment} />
                                 ))
                                 .sort((a, b) => a.props.voteScore < b.props.voteScore)
                         )
