@@ -13,6 +13,7 @@ import {
     ADD_COMMENT,
     ENABLE_EDITING,
     DISABLE_EDITING,
+    EDIT_COMMENT,
 } from '../actions/actionTypes'
 
 const category = {
@@ -122,6 +123,21 @@ function posts(state = {}, action) {
                         return post
                     })
             };
+
+        case EDIT_COMMENT:
+            return {
+                ...state,
+                allPosts: state.allPosts
+                    .map(post => {
+                        if (post.id === action.editedComment.parentId) {
+                            post.comments = post.comments
+                                .filter(comment => comment.id !== action.editedComment.id)
+                                .concat([action.editedComment])
+                                .sort((a, b) => a.voteScore < b.voteScore)
+                        }
+                        return post
+                    })
+            }
 
         case ADD_COMMENT:
             return {

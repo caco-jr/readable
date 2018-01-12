@@ -111,3 +111,11 @@ export function addComment(comment) {
         });
     };
 }
+
+export function editComment(comment) {
+    return dispatch => {
+        ReadableAPI.editComment(comment).then(editedComment => {
+            dispatch({ type: actionTypes.EDIT_COMMENT, editedComment })
+        });
+    };
+}

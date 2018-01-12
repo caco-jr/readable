@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid'
 import CommentItem from './CommentItem';
 import AddComment from './AddComment'
-import { addComment } from '../../../../services/redux/actions/index';
+import { addComment, editComment } from '../../../../services/redux/actions/index';
 
 class CommentBox extends PureComponent {
     state = {
@@ -16,17 +16,21 @@ class CommentBox extends PureComponent {
     }
 
     submit = (values) => {
-        const { parentId } = this.props;
+        const { parentId, addComment, editComment } = this.props;
 
         const comment = {
-            id: uuid().split("-").join(""),
+            id: values.id || uuid().split("-").join(""),
             author: values.author,
             body: values.body,
             timestamp: Date.now(),
             parentId
         }
 
-        this.props.addComment(comment);
+        if (values.id === undefined) {
+            addComment(comment);
+        } else {
+            editComment(comment)
+        }
     }
 
     render() {
@@ -50,7 +54,10 @@ class CommentBox extends PureComponent {
                     ) : (
                             comments
                                 .map(comment => (
-                                    <CommentItem key={comment.id} data={comment} />
+                                    <CommentItem
+                                        key={comment.id}
+                                        onSubmit={this.submit}
+                                        data={comment} />
                                 ))
                                 .sort((a, b) => a.props.voteScore < b.props.voteScore)
                         )
@@ -71,6 +78,7 @@ function mapStateToProps({ selected }) {
 function mapDispatchToProps(dispatch) {
     return {
         addComment: (comment) => dispatch(addComment(comment)),
+        editComment: (comment) => dispatch(editComment(comment))
     }
 }
 

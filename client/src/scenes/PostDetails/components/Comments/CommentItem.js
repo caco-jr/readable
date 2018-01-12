@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 import { getTime } from '../../../../services/utils/util'
 import {
     downVoteComment,
@@ -8,13 +9,14 @@ import {
     disableEditing
 } from '../../../../services/redux/actions'
 
-const CommentItem = props => {
+let CommentItem = props => {
     const {
         downVoteComment,
         upVoteComment,
         toggleEditing,
         disableEditing,
         enableEditing,
+        handleSubmit,
     } = props;
 
     const {
@@ -35,7 +37,7 @@ const CommentItem = props => {
         }
     }
 
-    const editComment = ( editable, content ) => {
+    const editComment = (editable, content) => {
         return toggleEditing.comment && (toggleEditing.object.id === id) ? editable : content
     }
 
@@ -43,40 +45,50 @@ const CommentItem = props => {
 
     return (
         <section className="comment__item" >
-            <h3>
-                {/* TODO: Mudar o "Editavel" pelo campo do redux form */}
-                {
-                    editComment(
-                        "Editavel",
-                        body
-                    )
-            }
-            </h3>
-            <p> {author} </p>
+            <form onSubmit={handleSubmit} >
+                <h3>
+                    {
+                        editComment(
+                            <Field
+                                name="body"
+                                component="input"
+                                type="text"
+                                placeholder="Escreva o seu comentário"
+                                className="comment__add--input"
+                            />,
+                            body
+                        )
+                    }
+                </h3>
 
-            <section>
-                <button onClick={() => downVoteComment(id)} >
-                    -
+                <p> {author} </p>
+
+                <section>
+                    <button onClick={() => downVoteComment(id)} >
+                        -
+                    </button>
+
+                    {voteScore}
+
+                    <button onClick={() => upVoteComment(id)} >
+                        +
+                    </button>
+                </section>
+
+                <button onClick={() => handleEdit()} type={editComment("button", "submit")} >
+                    {editComment("Salvar", "Editar")}
                 </button>
 
-                {voteScore}
-
-                <button onClick={() => upVoteComment(id)} >
-                    +
-                </button>
-            </section>
-
-            <button onClick={() => handleEdit()} >
-                { editComment("Salvar", "Editar") }
-            </button>
-
-            <span> {getTime(timestamp)} </span>
+                <span> {getTime(timestamp)} </span>
+            </form>
         </section>
     )
 }
 
-function mapStateToProps({ toggleEditing }) {
-    return { toggleEditing }
+function mapStateToProps({ toggleEditing, initialValues }) {
+    const { object } = toggleEditing;
+
+    return { toggleEditing, initialValues: { ...object } }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -87,5 +99,11 @@ function mapDispatchToProps(dispatch) {
         disableEditing: (who, object) => dispatch(disableEditing(who, object)),
     }
 }
+
+CommentItem = reduxForm({
+    form: 'editComment',
+    enableReinitialize: true,
+    keepDirtyOnReinitialize: true
+})(CommentItem)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)
