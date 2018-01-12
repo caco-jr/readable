@@ -35,12 +35,22 @@ const CommentItem = props => {
         }
     }
 
+    const editComment = ( editable, content ) => {
+        return toggleEditing.comment && (toggleEditing.object.id === id) ? editable : content
+    }
+
     console.log(props)
 
     return (
         <section className="comment__item" >
             <h3>
-                {toggleEditing.comment && (toggleEditing.object.id === id) ? "Editavel" : body}
+                {/* TODO: Mudar o "Editavel" pelo campo do redux form */}
+                {
+                    editComment(
+                        "Editavel",
+                        body
+                    )
+            }
             </h3>
             <p> {author} </p>
 
@@ -57,7 +67,7 @@ const CommentItem = props => {
             </section>
 
             <button onClick={() => handleEdit()} >
-                teste
+                { editComment("Salvar", "Editar") }
             </button>
 
             <span> {getTime(timestamp)} </span>
