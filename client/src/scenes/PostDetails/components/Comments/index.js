@@ -41,7 +41,7 @@ class CommentBox extends PureComponent {
                     showComments === false ? (
                         <button
                             type="button"
-                            className="comment__button"
+                            className="comment__button--show"
                             onClick={this.handleComment} >
 
                             {`Mostrar os ${commentCount} comentários`}
