@@ -57,9 +57,8 @@ class CommentBox extends PureComponent {
                                     <CommentItem
                                         key={comment.id}
                                         onSubmit={this.submit}
-                                        {...comment} />
+                                        comment={{ ...comment }} />
                                 ))
-                                .sort((a, b) => a.props.voteScore < b.props.voteScore)
                         )
                 }
             </section>
