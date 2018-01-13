@@ -42,18 +42,16 @@ let CommentItem = ({
         }
     }
 
-    const editComment = (editable, content) => {
-        return toggleEditing.comment && (toggleEditing.object.id === id) ? editable : content
+    const handleToggle = (enable, disable) => {
+        return toggleEditing.comment && (toggleEditing.object.id === id) ? enable : disable
     }
 
     return (
         <section className="comment__item" >
-            {console.log(voteScore)}
-
             <form onSubmit={handleSubmit} >
                 <h3>
                     {
-                        editComment(
+                        handleToggle(
                             <Field
                                 name="body"
                                 component="input"
@@ -80,9 +78,18 @@ let CommentItem = ({
                     </button>
                 </section>
 
-                <button onClick={() => handleEdit()} type={editComment("button", "submit")} >
-                    {editComment("Salvar", "Editar")}
+                <button onClick={() => handleEdit()} >
+                    {handleToggle("Salvar", "Editar")}
                 </button>
+
+                {
+                    handleToggle(
+                        <button type="button" onClick={() => disableEditing('comment')} >
+                            Cancelar
+                        </button>,
+                        null
+                    )
+                }
 
                 <button type="button" onClick={() => deleteComment(id)} >
                     Apagar
@@ -111,7 +118,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 CommentItem = reduxForm({
-    form: 'editComment',
+    form: 'commentEdit',
     enableReinitialize: true,
     keepDirtyOnReinitialize: true
 })(CommentItem)
