@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid'
@@ -6,7 +6,7 @@ import CommentItem from './CommentItem';
 import AddComment from './AddComment'
 import { addComment, editComment } from '../../../../services/redux/actions/index';
 
-class CommentBox extends Component {
+class CommentBox extends PureComponent {
     state = {
         showComments: false
     }
@@ -36,7 +36,6 @@ class CommentBox extends Component {
     render() {
         const { showComments } = this.state;
         const { comments, commentCount } = this.props.selected.post;
-        console.log(comments)
 
         return (
             <section className="comment card" >
@@ -58,7 +57,7 @@ class CommentBox extends Component {
                                     <CommentItem
                                         key={comment.id}
                                         onSubmit={this.submit}
-                                        data={comment} />
+                                        {...comment} />
                                 ))
                                 .sort((a, b) => a.props.voteScore < b.props.voteScore)
                         )

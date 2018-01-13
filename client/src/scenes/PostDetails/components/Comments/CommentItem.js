@@ -10,30 +10,33 @@ import {
     deleteComment
 } from '../../../../services/redux/actions'
 
-let CommentItem = props => {
-    const {
-        downVoteComment,
-        upVoteComment,
-        toggleEditing,
-        disableEditing,
-        enableEditing,
-        deleteComment,
-        handleSubmit,
-    } = props;
-
-    const {
+let CommentItem = ({
+    id,
+    body,
+    author,
+    voteScore,
+    timestamp,
+    downVoteComment,
+    upVoteComment,
+    toggleEditing,
+    disableEditing,
+    enableEditing,
+    deleteComment,
+    handleSubmit,
+}) => {
+    const comment = {
         id,
         body,
         author,
         voteScore,
         timestamp
-    } = props.data;
+    }
 
     const handleEdit = () => {
         const { object } = toggleEditing
 
         if (toggleEditing.comment === false) {
-            enableEditing('comment', props.data)
+            enableEditing('comment', comment)
         } else if (toggleEditing.comment === true && object.id === id) {
             disableEditing('comment')
         }
