@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getPosts, setSelected, downVotePost, upVotePost } from '../../services/redux/actions';
-import { getTime } from '../../services/utils/util'
+import { getPosts, setSelected } from '../../services/redux/actions';
+import Information from './components/Information'
 import CommentBox from './components/Comments';
 
 class PostDetails extends PureComponent {
@@ -30,30 +30,11 @@ class PostDetails extends PureComponent {
     }
 
     render() {
-        const { title, body, voteScore, id, commentCount, category, timestamp } = this.props.selected.post;
-        const { downVotePost, upVotePost } = this.props;
+        const { commentCount, id } = this.props.selected.post;
 
         return (
             <section className="container">
-                <section className="details card" >
-                    <h1 className="details--title" >
-                        {title}
-                    </h1>
-
-                    <span> {getTime(timestamp)} </span>
-
-                    <p>
-                        {body}
-                    </p>
-
-                    <section>
-                        <button onClick={() => downVotePost(id)} > - </button>
-                        {voteScore}
-                        <button onClick={() => upVotePost(id)} > + </button>
-                    </section>
-
-                    <span className="details--category"> {category} </span>
-                </section>
+                <Information />
 
                 {commentCount > 0 && <CommentBox parentId={id} />}
             </section>
@@ -69,8 +50,6 @@ function mapDispatchToProps(dispatch) {
     return {
         getPosts: () => dispatch(getPosts()),
         setSelected: (who, object) => dispatch(setSelected(who, object)),
-        upVotePost: (postID) => dispatch(upVotePost(postID)),
-        downVotePost: (postID) => dispatch(downVotePost(postID)),
     }
 }
 
