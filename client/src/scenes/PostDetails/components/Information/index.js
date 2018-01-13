@@ -1,9 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getTime } from '../../../../services/utils/util';
-import { upVotePost, downVotePost } from '../../../../services/redux/actions/index';
+import {
+    upVotePost,
+    downVotePost,
+    disableEditing,
+    enableEditing
+} from '../../../../services/redux/actions/index';
 
 const Information = props => {
+    const {
+        selected,
+        downVotePost,
+        upVotePost,
+        toggleEditing,
+        disableEditing,
+        enableEditing,
+    } = props;
+
     const {
         id,
         title,
@@ -13,14 +27,30 @@ const Information = props => {
         timestamp,
     } = props.selected.post;
 
-    const { downVotePost, upVotePost } = props;
+    const handleEdit = () => {
+        const { object } = toggleEditing
 
-    console.log(props)
+        if (toggleEditing.post === false) {
+            disableEditing()
+            enableEditing('post', selected.post)
+        } else if (toggleEditing.post === true && object.id === id) {
+            disableEditing()
+        }
+    }
+
+    const handleToggle = (enable, disable) => {
+        return toggleEditing.post && (toggleEditing.object.id === id) ? enable : disable
+    }
 
     return (
         <section className="details card" >
             <h1 className="details--title" >
-                {title}
+                {
+                    handleToggle(
+                        "Olá",
+                        title
+                    )
+                }
             </h1>
 
             <span> {getTime(timestamp)} </span>
@@ -35,19 +65,39 @@ const Information = props => {
                 <button onClick={() => upVotePost(id)} > + </button>
             </section>
 
+            <button onClick={() => handleEdit()} >
+                {
+                    handleToggle(
+                        "Salvar",
+                        "Editar"
+                    )
+                }
+            </button>
+
+            {
+                handleToggle(
+                    <button type="button" onClick={() => disableEditing('post')} >
+                        Cancelar
+                        </button>,
+                    null
+                )
+            }
+
             <span className="details--category"> {category} </span>
         </section>
     )
 }
 
-function mapStateToProps({ selected }) {
-    return { selected }
+function mapStateToProps({ selected, toggleEditing }) {
+    return { selected, toggleEditing }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         downVotePost: (postId) => dispatch(downVotePost(postId)),
         upVotePost: (postId) => dispatch(upVotePost(postId)),
+        disableEditing: () => dispatch(disableEditing()),
+        enableEditing: (who, object) => dispatch(enableEditing(who, object)),
     }
 }
 

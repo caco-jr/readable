@@ -33,9 +33,10 @@ let CommentItem = props => {
         const { object } = toggleEditing
 
         if (toggleEditing.comment === false) {
+            disableEditing()
             enableEditing('comment', props.comment)
         } else if (toggleEditing.comment === true && object.id === id) {
-            disableEditing('comment')
+            disableEditing()
         }
     }
 
@@ -75,7 +76,9 @@ let CommentItem = props => {
                     </button>
                 </section>
 
-                <button onClick={() => handleEdit()} >
+                <button
+                    onClick={() => handleEdit()}
+                    type={handleToggle("button", "submit")} >
                     {handleToggle("Salvar", "Editar")}
                 </button>
 
@@ -108,8 +111,8 @@ function mapDispatchToProps(dispatch) {
     return {
         downVoteComment: (commentID) => dispatch(downVoteComment(commentID)),
         upVoteComment: (commentID) => dispatch(upVoteComment(commentID)),
+        disableEditing: () => dispatch(disableEditing()),
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
-        disableEditing: (who, object) => dispatch(disableEditing(who, object)),
         deleteComment: (commentID) => dispatch(deleteComment(commentID)),
     }
 }

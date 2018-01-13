@@ -52,9 +52,9 @@ export function enableEditing(who, object) {
     }
 }
 
-export function disableEditing(who) {
+export function disableEditing() {
     return dispatch => {
-        dispatch({ type: actionTypes.DISABLE_EDITING, who })
+        dispatch({ type: actionTypes.DISABLE_EDITING })
     }
 }
 

@@ -213,8 +213,7 @@ function toggleEditing(state = editState, action) {
         case DISABLE_EDITING:
             return {
                 ...state,
-                [who]: false,
-                object: {}
+                ...editState
             }
 
         default:
