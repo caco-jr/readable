@@ -62,8 +62,8 @@ export function editPost(post) {
     return dispatch => {
         ReadableAPI.editPost(post)
             .then(
-            editPost =>
-                dispatch({ type: actionTypes.EDIT_POST, editPost })
+            editedPost =>
+                dispatch({ type: actionTypes.EDIT_POST, editedPost })
             )
     }
 }

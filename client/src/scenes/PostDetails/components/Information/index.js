@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getTime } from '../../../../services/utils/util';
+import { Field, reduxForm } from 'redux-form'
 import {
     upVotePost,
     downVotePost,
@@ -8,7 +9,7 @@ import {
     enableEditing
 } from '../../../../services/redux/actions/index';
 
-const Information = props => {
+let Information = props => {
     const {
         selected,
         downVotePost,
@@ -16,12 +17,14 @@ const Information = props => {
         toggleEditing,
         disableEditing,
         enableEditing,
+        handleSubmit,
     } = props;
 
     const {
         id,
         title,
         body,
+        author,
         voteScore,
         category,
         timestamp,
@@ -44,52 +47,75 @@ const Information = props => {
 
     return (
         <section className="details card" >
-            <h1 className="details--title" >
+            <form onSubmit={handleSubmit} >
+                <h1 className="details--title" >
+                    {
+                        handleToggle(
+                            <Field
+                                name="title"
+                                component="input"
+                                type="text"
+                                className="details--title-input"
+                            />,
+                            title
+                        )
+                    }
+                </h1>
+
+                <span> {getTime(timestamp)} </span>
+
+                <p className="details--body">
+                    {
+                        handleToggle(
+                            <Field
+                                name="body"
+                                component="input"
+                                type="text"
+                                className="details--body-input"
+                            />,
+                            body
+                        )
+                    }
+                </p>
+
+                <p> {author} </p>
+
+                <section>
+                    <button onClick={() => downVotePost(id)} > - </button>
+                    {voteScore}
+                    <button onClick={() => upVotePost(id)} > + </button>
+                </section>
+
+                <button
+                    onClick={() => handleEdit()}
+                    type={handleToggle("button", "submit")} >
+                    {
+                        handleToggle(
+                            "Salvar",
+                            "Editar"
+                        )
+                    }
+                </button>
+
                 {
                     handleToggle(
-                        "Olá",
-                        title
-                    )
-                }
-            </h1>
-
-            <span> {getTime(timestamp)} </span>
-
-            <p>
-                {body}
-            </p>
-
-            <section>
-                <button onClick={() => downVotePost(id)} > - </button>
-                {voteScore}
-                <button onClick={() => upVotePost(id)} > + </button>
-            </section>
-
-            <button onClick={() => handleEdit()} >
-                {
-                    handleToggle(
-                        "Salvar",
-                        "Editar"
-                    )
-                }
-            </button>
-
-            {
-                handleToggle(
-                    <button type="button" onClick={() => disableEditing('post')} >
-                        Cancelar
+                        <button type="button" onClick={() => disableEditing('post')} >
+                            Cancelar
                         </button>,
-                    null
-                )
-            }
+                        null
+                    )
+                }
 
-            <span className="details--category"> {category} </span>
+                <span className="details--category"> {category} </span>
+            </form>
         </section>
     )
 }
 
-function mapStateToProps({ selected, toggleEditing }) {
-    return { selected, toggleEditing }
+function mapStateToProps({ selected, toggleEditing, initialValues }) {
+    const { object } = toggleEditing;
+
+    return { selected, toggleEditing, initialValues: { ...object } }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -100,5 +126,11 @@ function mapDispatchToProps(dispatch) {
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
     }
 }
+
+Information = reduxForm({
+    form: 'postEdit',
+    enableReinitialize: true,
+    keepDirtyOnReinitialize: true
+})(Information)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Information)
