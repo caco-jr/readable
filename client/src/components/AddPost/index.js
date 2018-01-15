@@ -26,17 +26,17 @@ class AddPost extends PureComponent {
     }
 
     submit = (values) => {
-        const { parentId, addComment, editComment } = this.props;
-
-        // const post = {
-        //     id: values.id || uuid().split("-").join(""),
-        //     author: values.author,
-        //     body: values.body,
-        //     timestamp: Date.now(),
-        //     parentId
-        // }
-
-        console.log(values)
+        const post = {
+            id: uuid().split("-").join(""),
+            author: values.author,
+            title: values.title,
+            body: values.body,
+            timestamp: Date.now(),
+            category: values.category,
+            voteScore: 0,
+            deleted: false,
+            commentCount: 0,
+        }
 
         // if (values.id === undefined) {
         //     addComment(comment);
@@ -50,8 +50,7 @@ class AddPost extends PureComponent {
             <Fragment>
                 <button
                     onClick={this.handleOpenModal}
-                    className="addpost--button"
-                >
+                    className="addpost--button">
                     +
                 </button>
 
@@ -60,8 +59,7 @@ class AddPost extends PureComponent {
                     contentLabel="onRequestClose Example"
                     onRequestClose={this.handleCloseModal}
                     className="addpost--modal Modal"
-                    overlayClassName="Overlay"
-                >
+                    overlayClassName="Overlay">
                     <h2> Novo post </h2>
 
                     <PostForm onSubmit={this.submit} />

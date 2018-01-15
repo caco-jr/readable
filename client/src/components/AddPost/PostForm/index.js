@@ -1,8 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-const PostForm = props => {
-    const { handleSubmit } = props
+let PostForm = props => {
+    const { handleSubmit, categories } = props
+
+    console.log(props)
 
     return (
         <section className="post__add">
@@ -11,37 +14,57 @@ const PostForm = props => {
                     name="author"
                     component="input"
                     type="text"
-                    placeholder="João da Silva"
-                    className="post__add--input"
-                />
+                    placeholder="Enzo da Silva"
+                    className="post__add--input" />
 
                 <Field
                     name="title"
                     component="input"
                     type="text"
                     placeholder="ex: Vida secreta das capivaras"
-                    className="post__add--input"
-                />
+                    className="post__add--input" />
 
                 <Field
                     name="body"
                     component="input"
                     type="text"
-                    placeholder="Escreva o seu comentário"
-                    className="post__add--input"
-                />
+                    className="post__add--input" />
+
+                <section>
+                    {
+                        categories.allCategories.map(
+                            (category, index) => (
+                                <label key={index} >
+                                    <Field
+                                        name="category"
+                                        component="input"
+                                        type="radio"
+                                        value={category.name}
+                                        className="post__add--input" />
+
+                                    {category.name}
+                                </label>
+                            )
+                        )
+                    }
+                </section>
 
                 <button
                     type="submit"
                     className="post__add--button" >
-                    Comentar
+                    Postar
                 </button>
             </form>
         </section>
     )
 }
 
+function mapStateToProps({ categories }) {
+    return { categories }
+}
 
-export default reduxForm({
+PostForm = reduxForm({
     form: 'postForm'
 })(PostForm);
+
+export default connect(mapStateToProps)(PostForm)
