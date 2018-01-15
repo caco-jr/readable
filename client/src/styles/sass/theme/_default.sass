@@ -5,9 +5,32 @@ body
   background-color: #fcfcfc
 
 a, button
+  outline: none
+
   &:hover
     @include prefix('transition', '300ms all ease')
     cursor: pointer
+
+// --- Modal
+.Modal
+  position: absolute
+  top: 140px
+  left: 140px
+  right: 140px
+  bottom: 140px
+  background-color: #fff
+  outline: none
+  border-radius: $border-radius
+  padding: 30px
+
+.Overlay
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: transparentize(#000, 0.3)
+// ---------------------------------------------------------------------------------
 
 .card
   border-radius: $border-radius

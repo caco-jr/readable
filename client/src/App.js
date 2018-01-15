@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Routes from './Routes';
+import Main from './Main';
 import Header from './components/Header';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+import AddPost from './components/AddPost'
 import './styles/sass/main.css';
 
 class App extends Component {
@@ -10,7 +11,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <Navbar />
-        <Routes />
+        <Main>
+          <AddPost />
+        </Main>
       </div>
     );
   }
