@@ -1,10 +1,11 @@
 import React, { PureComponent, Fragment } from 'react'
 import ReactModal from 'react-modal'
 import Modal from 'react-modal';
-import uuid from 'uuid'
-import { connect } from 'react-redux'
-import PostForm from './PostForm'
+import uuid from 'uuid';
+import { connect } from 'react-redux';
+import PostForm from './PostForm';
 import { addPost, openModal, closeModal } from '../../services/redux/actions/index';
+import iconPost from './images/newpost-icon.svg'
 
 class AddPost extends PureComponent {
     constructor() {
@@ -37,7 +38,11 @@ class AddPost extends PureComponent {
                 <button
                     onClick={() => openModal()}
                     className="addpost--button">
-                    +
+                    <img
+                        className="addpost--button-icon"
+                        src={iconPost}
+                        alt="Novo Post"
+                        title="Novo Post" />
                 </button>
 
                 <ReactModal
