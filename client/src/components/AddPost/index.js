@@ -15,6 +15,8 @@ class AddPost extends PureComponent {
     }
 
     submit = (values) => {
+        const { addPost } = this.props;
+
         const post = {
             id: uuid().split("-").join(""),
             author: values.author,
@@ -27,7 +29,7 @@ class AddPost extends PureComponent {
             commentCount: 0,
         }
 
-        this.props.addPost(post);
+        addPost(post);
     }
 
     render() {

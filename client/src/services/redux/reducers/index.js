@@ -158,6 +158,7 @@ function posts(state = {}, action) {
                             post.comments = post.comments
                                 .concat([comment])
                                 .sort((a, b) => a.voteScore < b.voteScore)
+                            post.commentCount++
                         }
                         return post
                     })

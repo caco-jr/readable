@@ -16,14 +16,14 @@ class CommentBox extends PureComponent {
     }
 
     submit = (values) => {
-        const { parentId, addComment, editComment } = this.props;
+        const { selected, addComment, editComment } = this.props;
 
         const comment = {
             id: values.id || uuid().split("-").join(""),
             author: values.author,
             body: values.body,
             timestamp: Date.now(),
-            parentId
+            parentId: selected.post.id
         }
 
         if (values.id === undefined) {
@@ -42,24 +42,26 @@ class CommentBox extends PureComponent {
                 <AddComment onSubmit={this.submit} />
 
                 {
-                    showComments === false ? (
-                        <button
-                            type="button"
-                            className="comment__button--show"
-                            onClick={this.handleComment} >
+                    commentCount > 0 && (
+                        showComments === false ? (
+                            <button
+                                type="button"
+                                className="comment__button--show"
+                                onClick={this.handleComment} >
 
-                            {`Mostrar os ${commentCount} comentários`}
+                                {`Mostrar os ${commentCount} comentários`}
 
-                        </button>
-                    ) : (
-                            comments
-                                .map(comment => (
-                                    <CommentItem
-                                        key={comment.id}
-                                        onSubmit={this.submit}
-                                        comment={{ ...comment }} />
-                                ))
-                        )
+                            </button>
+                        ) : (
+                                comments
+                                    .map(comment => (
+                                        <CommentItem
+                                            key={comment.id}
+                                            onSubmit={this.submit}
+                                            comment={{ ...comment }} />
+                                    ))
+                            )
+                    )
                 }
             </section>
         )

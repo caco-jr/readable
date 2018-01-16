@@ -42,9 +42,10 @@ export function getPosts() {
 
 export function addPost(post) {
     return dispatch => {
-        ReadableAPI.addPost(post).then(newPost =>
-            dispatch({ type: actionTypes.ADD_POST, newPost })
-        );
+        ReadableAPI.addPost(post)
+            .then(newPost =>
+                dispatch({ type: actionTypes.ADD_POST, newPost })
+            );
     };
 }
 

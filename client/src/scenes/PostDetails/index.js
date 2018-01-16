@@ -47,13 +47,11 @@ class PostDetails extends PureComponent {
     }
 
     render() {
-        const { commentCount, id } = this.props.selected.post;
-
         return (
             <section className="container">
                 <Information onSubmit={this.submit} />
 
-                {commentCount > 0 && <CommentBox parentId={id} />}
+                <CommentBox />
             </section>
         )
     }
