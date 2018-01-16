@@ -47,6 +47,7 @@ let PostForm = ({ handleSubmit, categories }) => {
                     component={CustomInput}
                     type="text"
                     textarea={true}
+                    rows="10"
                     className="addpost__form" />
 
                 <button

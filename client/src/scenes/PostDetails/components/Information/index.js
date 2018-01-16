@@ -49,19 +49,19 @@ let Information = props => {
     return (
         <section className="details card" >
             <form onSubmit={handleSubmit} >
-                <h1 className="details--title" >
-                    {
-                        handleToggle(
-                            <Field
-                                name="title"
-                                component="input"
-                                type="text"
-                                className="details--title-input"
-                            />,
-                            title
-                        )
-                    }
-                </h1>
+
+                {
+                    handleToggle(
+                        <Field
+                            name="title"
+                            component={CustomInput}
+                            label="Título:"
+                            type="text"
+                            className="details--title"
+                        />,
+                        <h1 className="details--title" > {title} </h1>
+                    )
+                }
 
                 <span> {getTime(timestamp)} </span>
 
@@ -71,7 +71,7 @@ let Information = props => {
                             name="body"
                             component={CustomInput}
                             textarea={true}
-                            className="details--body-input" />,
+                            className="details--body" />,
                         <p className="details--body">
                             {body}
                         </p>
