@@ -13,7 +13,6 @@ class PostDetails extends PureComponent {
         }
     }
 
-    // TODO: Arrumar a lógica para atualizar nas mudanças do post selecionado
     componentWillReceiveProps({ posts }) {
         if (Object.keys(posts).length !== Object.keys(this.props.posts).length) {
             this.setPostSelected(posts)
@@ -31,7 +30,7 @@ class PostDetails extends PureComponent {
     }
 
     submit = (values) => {
-        const { editPost, selected } = this.props
+        const { editPost, selected, setSelected } = this.props
 
         const post = {
             id: values.id,
@@ -44,6 +43,7 @@ class PostDetails extends PureComponent {
         }
 
         editPost(post)
+        setSelected('post', post)
     }
 
     render() {
