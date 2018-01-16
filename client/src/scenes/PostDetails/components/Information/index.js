@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTime } from '../../../../services/utils/util';
 import { Field, reduxForm } from 'redux-form'
+import CustomInput from '../../../../components/CustomInput'
 import {
     upVotePost,
     downVotePost,
@@ -64,19 +65,18 @@ let Information = props => {
 
                 <span> {getTime(timestamp)} </span>
 
-                <p className="details--body">
-                    {
-                        handleToggle(
-                            <Field
-                                name="body"
-                                component="input"
-                                type="text"
-                                className="details--body-input"
-                            />,
-                            body
-                        )
-                    }
-                </p>
+                {
+                    handleToggle(
+                        <Field
+                            name="body"
+                            component={CustomInput}
+                            textarea={true}
+                            className="details--body-input" />,
+                        <p className="details--body">
+                            {body}
+                        </p>
+                    )
+                }
 
                 <p> {author} </p>
 

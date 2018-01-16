@@ -1,39 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-
-const customInput = ({
-    input,
-    label,
-    type,
-    className,
-    textarea = false,
-    rows = 5,
-    placeholder,
-    meta: { touched, error, warning }
-}) => (
-        <div className={className} >
-            <label className={`${className}--label`}>{label}</label>
-            {
-                textarea ? (
-                    <textarea
-                        placeholder={placeholder}
-                        className={`${className}--input`}
-                        {...input}
-                        rows={rows} />
-                ) : (
-                        <input
-                            className={`${className}--input`}
-                            {...input}
-                            type={type}
-                            placeholder={placeholder} />
-                    )
-            }
-            {touched &&
-                ((error && <span className="errorInput">{error}</span>) ||
-                    (warning && <span>{warning}</span>))}
-        </div>
-    )
+import CustomInput from '../../CustomInput'
 
 let PostForm = ({ handleSubmit, categories }) => {
     return (
@@ -41,7 +9,7 @@ let PostForm = ({ handleSubmit, categories }) => {
             <form onSubmit={handleSubmit} >
                 <Field
                     name="author"
-                    component={customInput}
+                    component={CustomInput}
                     type="text"
                     label="Nome"
                     placeholder="Enzo da Silva"
@@ -49,7 +17,7 @@ let PostForm = ({ handleSubmit, categories }) => {
 
                 <Field
                     name="title"
-                    component={customInput}
+                    component={CustomInput}
                     label="Título"
                     type="text"
                     placeholder="ex: Vida secreta das capivaras"
@@ -76,7 +44,7 @@ let PostForm = ({ handleSubmit, categories }) => {
 
                 <Field
                     name="body"
-                    component={customInput}
+                    component={CustomInput}
                     type="text"
                     textarea={true}
                     className="addpost__form" />
