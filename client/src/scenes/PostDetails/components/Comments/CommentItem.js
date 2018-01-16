@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { getTime } from '../../../../services/utils/util'
+import DeleteButton from '../DeleteButton'
 import {
     downVoteComment,
     upVoteComment,
     enableEditing,
     disableEditing,
-    deleteComment
 } from '../../../../services/redux/actions'
 
 let CommentItem = props => {
@@ -17,7 +17,6 @@ let CommentItem = props => {
         toggleEditing,
         disableEditing,
         enableEditing,
-        deleteComment,
         handleSubmit,
     } = props;
 
@@ -91,11 +90,9 @@ let CommentItem = props => {
                     )
                 }
 
-                <button type="button" onClick={() => deleteComment(id)} >
-                    Apagar
-                </button>
-
                 <span> {getTime(timestamp)} </span>
+
+                <DeleteButton component="comment" id={id} />
             </form>
         </section>
     )
@@ -113,7 +110,6 @@ function mapDispatchToProps(dispatch) {
         upVoteComment: (commentID) => dispatch(upVoteComment(commentID)),
         disableEditing: () => dispatch(disableEditing()),
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
-        deleteComment: (commentID) => dispatch(deleteComment(commentID)),
     }
 }
 

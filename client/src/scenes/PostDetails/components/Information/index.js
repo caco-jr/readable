@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { getTime } from '../../../../services/utils/util';
 import { Field, reduxForm } from 'redux-form'
 import CustomInput from '../../../../components/CustomInput'
+import DeleteButton from '../DeleteButton'
 import {
     upVotePost,
     downVotePost,
     disableEditing,
     enableEditing,
-    deletePost
 } from '../../../../services/redux/actions/index';
 
 let Information = props => {
@@ -20,8 +20,6 @@ let Information = props => {
         toggleEditing,
         disableEditing,
         enableEditing,
-        deletePost,
-        history
     } = props;
 
     const {
@@ -47,11 +45,6 @@ let Information = props => {
 
     const handleToggle = (enable, disable) => {
         return toggleEditing.post && (toggleEditing.object.id === id) ? enable : disable
-    }
-
-    const handleDelete = () => {
-        deletePost(id);
-        history.goBack()
     }
 
     return (
@@ -114,9 +107,7 @@ let Information = props => {
                     )
                 }
 
-                <button type="button" onClick={() => handleDelete()} >
-                    Apagar
-                </button>
+                <DeleteButton component="post" id={id} />
 
                 <span className="details--category"> {category} </span>
             </form>
@@ -136,7 +127,6 @@ function mapDispatchToProps(dispatch) {
         upVotePost: (postId) => dispatch(upVotePost(postId)),
         disableEditing: () => dispatch(disableEditing()),
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
-        deletePost: (postId) => dispatch(deletePost(postId)),
     }
 }
 
