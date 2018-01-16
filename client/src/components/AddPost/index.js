@@ -1,28 +1,16 @@
 import React, { PureComponent, Fragment } from 'react'
 import ReactModal from 'react-modal'
 import Modal from 'react-modal';
-import PostForm from './PostForm'
 import uuid from 'uuid'
+import { connect } from 'react-redux'
+import PostForm from './PostForm'
+import { addPost, openModal, closeModal } from '../../services/redux/actions/index';
 
 class AddPost extends PureComponent {
     constructor() {
         super()
-        this.state = {
-            showModal: false
-        };
 
         Modal.setAppElement('body')
-
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
-    }
-
-    handleOpenModal() {
-        this.setState({ showModal: true });
-    }
-
-    handleCloseModal() {
-        this.setState({ showModal: false });
     }
 
     submit = (values) => {
@@ -38,37 +26,50 @@ class AddPost extends PureComponent {
             commentCount: 0,
         }
 
-        // if (values.id === undefined) {
-        //     addComment(comment);
-        // } else {
-        //     editComment(comment)
-        // }
+        this.props.addPost(post);
     }
 
     render() {
+        const { closeModal, openModal, modal } = this.props;
+
         return (
             <Fragment>
                 <button
-                    onClick={this.handleOpenModal}
+                    onClick={() => openModal()}
                     className="addpost--button">
                     +
                 </button>
 
                 <ReactModal
-                    isOpen={this.state.showModal}
+                    isOpen={modal.showModal}
                     contentLabel="onRequestClose Example"
-                    onRequestClose={this.handleCloseModal}
+                    onRequestClose={() => closeModal()}
                     className="addpost--modal Modal"
                     overlayClassName="Overlay">
-                    <h2> Novo post </h2>
+
+                    <h2 className="addpost--title" > Novo post </h2>
 
                     <PostForm onSubmit={this.submit} />
 
-                    <button onClick={this.handleCloseModal}>Close Modal</button>
+                    <button onClick={() => closeModal()}>
+                        Fechar
+                    </button>
                 </ReactModal>
             </Fragment>
         );
     }
 }
 
-export default AddPost
+function mapStateToProps({ modal }) {
+    return { modal }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addPost: (newPost) => dispatch(addPost(newPost)),
+        openModal: () => dispatch(openModal()),
+        closeModal: () => dispatch(closeModal())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost)

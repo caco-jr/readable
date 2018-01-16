@@ -13,15 +13,20 @@ a, button
 
 // --- Modal
 .Modal
-  position: absolute
-  top: 140px
-  left: 140px
-  right: 140px
-  bottom: 140px
   background-color: #fff
   outline: none
   border-radius: $border-radius
   padding: 30px
+  margin: auto
+  max-width: 100%
+  max-height: 100%
+  width: 600px
+  height: 800px
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
 
 .Overlay
   position: fixed
@@ -31,6 +36,17 @@ a, button
   bottom: 0
   background-color: transparentize(#000, 0.3)
 // ---------------------------------------------------------------------------------
+
+input, textarea
+  border-radius: $border-radius
+  border: 1px solid $border-color
+  min-height: 30px
+  padding: 10px 15px
+  max-width: 100%
+
+  @include input-placeholder
+    color: #ccc
+    font-weight: 300
 
 .card
   border-radius: $border-radius

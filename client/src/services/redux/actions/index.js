@@ -40,6 +40,14 @@ export function getPosts() {
     }
 }
 
+export function addPost(post) {
+    return dispatch => {
+        ReadableAPI.addPost(post).then(newPost =>
+            dispatch({ type: actionTypes.ADD_POST, newPost })
+        );
+    };
+}
+
 export function setSelected(who, object) {
     return dispatch => {
         dispatch({ type: actionTypes.SET_SELECTED, who, object })
@@ -126,4 +134,16 @@ export function editComment(comment) {
             dispatch({ type: actionTypes.EDIT_COMMENT, editedComment })
         });
     };
+}
+
+export function openModal() {
+    return dispatch => {
+        dispatch({ type: actionTypes.OPEN_MODAL })
+    }
+}
+
+export function closeModal(object) {
+    return dispatch => {
+        dispatch({ type: actionTypes.CLOSE_MODAL })
+    }
 }

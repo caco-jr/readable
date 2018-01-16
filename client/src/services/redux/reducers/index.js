@@ -15,6 +15,9 @@ import {
     ENABLE_EDITING,
     DISABLE_EDITING,
     EDIT_COMMENT,
+    ADD_POST,
+    OPEN_MODAL,
+    CLOSE_MODAL,
 } from '../actions/actionTypes'
 
 const category = {
@@ -50,6 +53,12 @@ function posts(state = {}, action) {
                 ...state,
                 allPosts: action.posts
             };
+
+        case ADD_POST:
+            return {
+                ...state,
+                allPosts: state.allPosts.concat([action.newPost])
+            }
 
         case EDIT_POST:
             return {
@@ -221,10 +230,34 @@ function toggleEditing(state = editState, action) {
     }
 }
 
+const modalState = {
+    showModal: false
+}
+
+function modal(state = modalState, action) {
+    switch (action.type) {
+        case OPEN_MODAL:
+            return {
+                ...state,
+                showModal: true
+            }
+
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                showModal: false
+            }
+
+        default:
+            return { ...state }
+    }
+}
+
 export default combineReducers({
     categories,
     posts,
     selected,
     toggleEditing,
+    modal,
     form: formReducer
 });
