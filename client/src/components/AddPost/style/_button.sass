@@ -11,9 +11,11 @@
   display: flex
   align-content: center
   justify-content: center
+  @include prefix('transition', '.1s all ease')
 
   &-icon
     width: 30px
 
   &:hover
     background-color: $primary-color-dark
+    @include prefix('transform', 'scale(1.15)')
