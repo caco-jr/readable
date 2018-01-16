@@ -18,6 +18,7 @@ import {
     ADD_POST,
     OPEN_MODAL,
     CLOSE_MODAL,
+    DELETE_POST,
 } from '../actions/actionTypes'
 
 const category = {
@@ -58,6 +59,12 @@ function posts(state = {}, action) {
             return {
                 ...state,
                 allPosts: state.allPosts.concat([action.newPost])
+            }
+
+        case DELETE_POST:
+            return {
+                ...state,
+                allPosts: state.allPosts.filter(post => post.id !== action.id)
             }
 
         case EDIT_POST:

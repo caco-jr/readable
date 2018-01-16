@@ -7,18 +7,21 @@ import {
     upVotePost,
     downVotePost,
     disableEditing,
-    enableEditing
+    enableEditing,
+    deletePost
 } from '../../../../services/redux/actions/index';
 
 let Information = props => {
     const {
         selected,
+        handleSubmit,
         downVotePost,
         upVotePost,
         toggleEditing,
         disableEditing,
         enableEditing,
-        handleSubmit,
+        deletePost,
+        history
     } = props;
 
     const {
@@ -44,6 +47,11 @@ let Information = props => {
 
     const handleToggle = (enable, disable) => {
         return toggleEditing.post && (toggleEditing.object.id === id) ? enable : disable
+    }
+
+    const handleDelete = () => {
+        deletePost(id);
+        history.goBack()
     }
 
     return (
@@ -106,6 +114,10 @@ let Information = props => {
                     )
                 }
 
+                <button type="button" onClick={() => handleDelete()} >
+                    Apagar
+                </button>
+
                 <span className="details--category"> {category} </span>
             </form>
         </section>
@@ -124,6 +136,7 @@ function mapDispatchToProps(dispatch) {
         upVotePost: (postId) => dispatch(upVotePost(postId)),
         disableEditing: () => dispatch(disableEditing()),
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
+        deletePost: (postId) => dispatch(deletePost(postId)),
     }
 }
 

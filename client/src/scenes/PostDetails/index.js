@@ -49,7 +49,7 @@ class PostDetails extends PureComponent {
     render() {
         return (
             <section className="container">
-                <Information onSubmit={this.submit} />
+                <Information onSubmit={this.submit} history={this.props.history} />
 
                 <CommentBox />
             </section>

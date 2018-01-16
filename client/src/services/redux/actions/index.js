@@ -40,6 +40,14 @@ export function getPosts() {
     }
 }
 
+export function deletePost(id) {
+    return dispatch => {
+        ReadableAPI.deletePost(id).then(posts =>
+            dispatch({ type: actionTypes.DELETE_POST, id })
+        );
+    };
+}
+
 export function addPost(post) {
     return dispatch => {
         ReadableAPI.addPost(post)
