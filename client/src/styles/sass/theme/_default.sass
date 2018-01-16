@@ -4,12 +4,25 @@ html, body
 body
   background-color: #fcfcfc
 
+  *
+    color: $text-color
+
 a, button
   outline: none
 
   &:hover
     @include prefix('transition', '300ms all ease')
     cursor: pointer
+
+label
+  display: inline-block
+  font-size: 14px
+  margin-bottom: 5px
+
+button
+  border-radius: $border-radius
+  border: none
+  padding: 5px 15px
 
 // --- Modal
 .Modal
@@ -41,12 +54,15 @@ input, textarea
   border-radius: $border-radius
   border: 1px solid $border-color
   min-height: 30px
-  padding: 10px 15px
+  padding: 8px 15px
   max-width: 100%
+  font-size: 14px
+  outline: none
 
   @include input-placeholder
     color: #ccc
     font-weight: 300
+    font-size: 14px
 
 .card
   border-radius: $border-radius

@@ -11,14 +11,14 @@ let PostForm = ({ handleSubmit, categories }) => {
                     name="author"
                     component={CustomInput}
                     type="text"
-                    label="Nome"
+                    label="Nome*"
                     placeholder="Enzo da Silva"
                     className="addpost__form" />
 
                 <Field
                     name="title"
                     component={CustomInput}
-                    label="Título"
+                    label="Título*"
                     type="text"
                     placeholder="ex: Vida secreta das capivaras"
                     className="addpost__form" />

@@ -59,7 +59,7 @@ class AddPost extends PureComponent {
                     <PostForm onSubmit={this.submit} />
 
                     <button onClick={() => closeModal()}>
-                        Fechar
+                        Cancelar
                     </button>
                 </ReactModal>
             </Fragment>

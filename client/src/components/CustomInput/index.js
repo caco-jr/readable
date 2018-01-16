@@ -11,18 +11,18 @@ const CustomInput = ({
     meta: { touched, error, warning }
 }) => (
         <div className={className} >
-            {label && <label className={`${className}--label`}>{label}</label>}
+            {label && <label className={`${className}-label`}>{label}</label>}
 
             {
                 textarea ? (
                     <textarea
                         placeholder={placeholder}
-                        className={`${className}--input`}
+                        className={`${className}-input`}
                         {...input}
                         rows={rows} />
                 ) : (
                         <input
-                            className={`${className}--input`}
+                            className={`${className}-input`}
                             {...input}
                             type={type}
                             placeholder={placeholder} />
