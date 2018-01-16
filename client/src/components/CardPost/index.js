@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
 import { setSelected } from '../../services/redux/actions';
 import { truncateString } from '../../services/utils/util'
-import chat from './images/chat.svg'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faComments } from '@fortawesome/fontawesome-free-regular';
 
 const CardPost = ({ post, posts, setSelected, selected, history }) => {
     const {
@@ -29,7 +30,9 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
                 <span className="card__post--category"> {category} </span>
 
                 <span className="card__post--comment" >
-                    <img src={chat} alt="comment" className="card__post--comment-icon" />
+                    <FontAwesomeIcon
+                        className="card__post--comment-icon"
+                        icon={faComments} />
 
                     {commentCount}
                 </span>

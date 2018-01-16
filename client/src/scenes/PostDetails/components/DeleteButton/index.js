@@ -12,6 +12,7 @@ const DeleteButton = ({
     className,
     deleteComment,
     deletePost,
+    text,
     history
 }) => {
     const handleDelete = () => {
@@ -28,6 +29,9 @@ const DeleteButton = ({
             className={`${className} delete--button`}
             type="button"
             onClick={() => handleDelete()} >
+
+            {text && <span className={`${className}-text delete--button-text`} > {text} </span>}
+
             <FontAwesomeIcon
                 className={`${className}-icon delete--button-icon`}
                 icon={faTrashAlt} />
@@ -43,6 +47,7 @@ DeleteButton.propTypes = {
     // id: PropTypes.string.isRequired,
     component: PropTypes.string.isRequired,
     className: PropTypes.string,
+    text: PropTypes.string,
 }
 
 function mapDispatchToProps(dispatch) {
