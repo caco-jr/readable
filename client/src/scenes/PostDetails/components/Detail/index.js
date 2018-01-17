@@ -5,12 +5,11 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/fontawesome-free-regular';
 import Vote from '../../../../components/Vote'
 import DetailForm from './DetailForm'
-import { setSelected, editPost } from '../../../../services/redux/actions/index';
+import { editPost } from '../../../../services/redux/actions/index';
 
 const DetailBox = props => {
     const {
         selected,
-        setSelected,
         editPost,
     } = props;
 
@@ -36,8 +35,7 @@ const DetailBox = props => {
             deleted: false,
         }
 
-        editPost(post)
-        setSelected('post', post)
+        editPost(post);
     }
 
     return (
@@ -71,7 +69,6 @@ function mapStateToProps({ selected }) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setSelected: (who, object) => dispatch(setSelected(who, object)),
         editPost: (post) => dispatch(editPost(post)),
     }
 }

@@ -17,7 +17,11 @@ class PostDetails extends PureComponent {
         const { posts } = this.props;
 
         if (Object.keys(nextProps.posts).length !== Object.keys(posts).length) {
-            this.setPostSelected(nextProps.posts)
+            this.setPostSelected(nextProps.posts);
+        }
+
+        if (Object.keys(posts).length > 0) {
+            this.setPostSelected(nextProps.posts);
         }
     }
 
@@ -25,8 +29,15 @@ class PostDetails extends PureComponent {
         const { id } = this.props.match.params;
         const { setSelected, selected } = this.props;
 
-        const post = posts.allPosts.map(post => post).filter(post => id === post.id)
-        setSelected('post', ...post)
+        const post = posts.allPosts.map(post => post).filter(post => id === post.id);
+
+        if (Object.keys(selected.post).length === 0) {
+            setSelected('post', ...post);
+        } else if (Object.keys(selected.post).length > 0) {
+            const postChange = post.shift();
+
+            postChange !== selected.post && setSelected('post', postChange);
+        }
     }
 
     render() {

@@ -20,8 +20,7 @@ class Category extends Component {
     }
 
     render() {
-        console.log(this.props);
-        const { postsCategory } = this.props.categories
+        const { postsCategory } = this.props.categories;
 
         return (
             <section className="container" >
