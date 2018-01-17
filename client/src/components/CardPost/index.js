@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
 import { setSelected } from '../../services/redux/actions';
-import { truncateString } from '../../services/utils/util'
+import { truncateString } from '../../services/utils/util';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faComments } from '@fortawesome/fontawesome-free-regular';
+import Vote from '../Vote'
 
 const CardPost = ({ post, posts, setSelected, selected, history }) => {
     const {
+        id,
         title,
         commentCount,
         body,
-        category
+        category,
+        voteScore
     } = post;
 
     const changeRoute = () => {
@@ -21,10 +24,19 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
     }
 
     return (
-        <section className="card__post card" onClick={() => changeRoute()} >
-            <h3 className="card__post--title" > {title} </h3>
+        <section className="card__post card" >
+            <h3 className="card__post--title" onClick={() => changeRoute()} >
+                {title}
+            </h3>
 
             <p className="card__post--description"> {truncateString(body, 50)} </p>
+
+            <Vote
+                id={id}
+                className="card__post--vote"
+                component="post" >
+                {voteScore}
+            </Vote>
 
             <section className="card__post--extra" >
                 <span className="card__post--category"> {category} </span>

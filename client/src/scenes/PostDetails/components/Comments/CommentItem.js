@@ -3,17 +3,14 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { getTime } from '../../../../services/utils/util'
 import DeleteButton from '../DeleteButton'
+import Vote from '../../../../components/Vote'
 import {
-    downVoteComment,
-    upVoteComment,
     enableEditing,
     disableEditing,
 } from '../../../../services/redux/actions'
 
 let CommentItem = props => {
     const {
-        downVoteComment,
-        upVoteComment,
         toggleEditing,
         disableEditing,
         enableEditing,
@@ -54,7 +51,7 @@ let CommentItem = props => {
                                 component="input"
                                 type="text"
                                 placeholder="Escreva o seu comentário"
-                                className="comment__add--input"
+                                className="comment__item--input"
                             />,
                             body
                         )
@@ -63,17 +60,12 @@ let CommentItem = props => {
 
                 <p> {author} </p>
 
-                <section>
-                    <button type="button" onClick={() => downVoteComment(id)} >
-                        -
-                    </button>
-
+                <Vote
+                    id={id}
+                    className="comment__item--vote"
+                    component="comment" >
                     {voteScore}
-
-                    <button type="button" onClick={() => upVoteComment(id)} >
-                        +
-                    </button>
-                </section>
+                </Vote>
 
                 <button
                     onClick={() => handleEdit()}
@@ -106,8 +98,6 @@ function mapStateToProps({ toggleEditing, initialValues }) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        downVoteComment: (commentID) => dispatch(downVoteComment(commentID)),
-        upVoteComment: (commentID) => dispatch(upVoteComment(commentID)),
         disableEditing: () => dispatch(disableEditing()),
         enableEditing: (who, object) => dispatch(enableEditing(who, object)),
     }

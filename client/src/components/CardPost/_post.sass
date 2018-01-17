@@ -2,7 +2,6 @@
   margin: 0 15px 30px
   padding-bottom: 0
   width: 255px
-  cursor: pointer
   overflow: hidden
   @include prefix('transition', 'all 0.3s cubic-bezier(.25,.8,.25,1)')
   @include prefix('transform', 'translateY(0)')
@@ -14,6 +13,7 @@
     padding-bottom: 15px
     border-bottom: 1px solid $border-color
     color: $text-color
+    cursor: pointer
 
   &--description, &--comment, &--category
     color: $text-color-light
