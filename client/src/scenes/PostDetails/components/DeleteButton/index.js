@@ -30,11 +30,11 @@ const DeleteButton = ({
             type="button"
             onClick={() => handleDelete()} >
 
-            {text && <span className={`${className}-text delete--button-text`} > {text} </span>}
-
             <FontAwesomeIcon
                 className={`${className}-icon delete--button-icon`}
                 icon={faTrashAlt} />
+
+            {text && <span className={`${className}-text delete--button-text`} > {text} </span>}
         </button>
     )
 }

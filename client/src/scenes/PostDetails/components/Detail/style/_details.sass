@@ -1,0 +1,40 @@
+.details
+  padding: 20px 15px
+  position: relative
+
+  &__form
+    &--title
+      font-size: 24px
+
+    &--button
+      &-icon
+        margin-right: 5px
+
+    &--button
+      border: 1px solid
+      padding: 5px 10px
+      height: 30px
+      position: absolute
+      bottom: 15px
+
+      &.save
+        right: 145px
+
+      &.cancel
+        right: 230px
+
+      &.delete
+
+      &-text
+        font-size: 12px
+        margin-left: 5px
+
+      &-icon
+        font-size: 14px
+
+      &:hover
+        .details__form--button-icon
+          animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
+
+    .delete--button
+      right: 15px

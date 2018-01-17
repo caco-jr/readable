@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getPosts, setSelected, editPost } from '../../services/redux/actions';
-import Information from './components/Information'
+import { getPosts, setSelected } from '../../services/redux/actions';
+import DetailBox from './components/Detail'
 import CommentBox from './components/Comments';
 
 class PostDetails extends PureComponent {
@@ -29,27 +29,10 @@ class PostDetails extends PureComponent {
         }
     }
 
-    submit = (values) => {
-        const { editPost, selected, setSelected } = this.props
-
-        const post = {
-            id: values.id,
-            timestamp: values.timestamp,
-            title: values.title || selected.post.title,
-            body: values.body || selected.post.body,
-            author: values.author,
-            category: values.category,
-            comments: values.comments || []
-        }
-
-        editPost(post)
-        setSelected('post', post)
-    }
-
     render() {
         return (
             <section className="container">
-                <Information onSubmit={this.submit} />
+                <DetailBox />
 
                 <CommentBox />
             </section>
@@ -65,7 +48,6 @@ function mapDispatchToProps(dispatch) {
     return {
         getPosts: () => dispatch(getPosts()),
         setSelected: (who, object) => dispatch(setSelected(who, object)),
-        editPost: (post) => dispatch(editPost(post))
     }
 }
 
