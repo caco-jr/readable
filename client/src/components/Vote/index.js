@@ -37,18 +37,30 @@ const Vote = ({
 
     return (
         <section className={`${className} vote`} >
-            <button type="button" onClick={() => handleDownVote()} >
+            <button
+                type="button"
+                className={`${className}--button vote--button`}
+                onClick={() => handleDownVote()} >
+
                 <FontAwesomeIcon
-                    className={`details__form--time-icon`}
+                    className={`${className}--button-icon vote--button-icon`}
                     icon={faThumbsDown} />
+
             </button>
 
-            <span> {children} </span>
+            <span className={`${className}--text vote--text`} >
+                {children}
+            </span>
 
-            <button type="button" onClick={() => handleUpVote()} >
+            <button
+                type="button"
+                className={`${className}--button vote--button`}
+                onClick={() => handleUpVote()} >
+
                 <FontAwesomeIcon
-                    className={`details__form--time-icon`}
+                    className={`${className}--button-icon vote--button-icon`}
                     icon={faThumbsUp} />
+
             </button>
         </section>
     )
