@@ -9,9 +9,10 @@ React / Redux project for React Nanodegree from Udacity.
     - `npm install`
     - `node server` or `npm start`
 
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `cd client`
-    - `npm start`
+* In another terminal window, use this commands to start the project:
+    - `cd client`
+    - `npm install`
+    - `npm start`
 
 ## API Server
 
