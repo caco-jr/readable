@@ -29,8 +29,8 @@ const CustomInput = ({
                     )
             }
             {touched &&
-                ((error && <span className="errorInput">{error}</span>) ||
-                    (warning && <span>{warning}</span>))}
+                ((error && <span className={`${className}-error errorInput`}>{error}</span>) ||
+                    (warning && <span className={`${className}-warning warningInput`}>{warning}</span>))}
         </div>
     )
 

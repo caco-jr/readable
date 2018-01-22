@@ -114,6 +114,25 @@ let DetailForm = props => {
     )
 }
 
+//Post side validation
+function validate(values) {
+    const errors = {};
+
+    if (!values.title || values.title.trim() === '') {
+        errors.title = 'Campo obrigatório';
+    }
+
+    if (values.title && values.title.length > 25) {
+        errors.title = 'Too big, max 25 characters';
+    }
+
+    if (!values.body || values.body.trim() === '') {
+        errors.body = 'Campo obrigatório';
+    }
+
+    return errors;
+}
+
 function mapStateToProps({ selected, toggleEditing, initialValues }) {
     const { object } = toggleEditing;
 
@@ -131,6 +150,7 @@ DetailForm = reduxForm({
     form: 'postEdit',
     enableReinitialize: true,
     keepDirtyOnReinitialize: true,
+    validate,
 })(DetailForm)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailForm)

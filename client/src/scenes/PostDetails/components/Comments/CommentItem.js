@@ -125,6 +125,17 @@ let CommentItem = props => {
     )
 }
 
+//Post side validation
+function validate(values) {
+    const errors = {};
+
+    if (!values.body || values.body.trim() === '') {
+        errors.body = 'Campo obrigatório';
+    }
+
+    return errors;
+}
+
 function mapStateToProps({ toggleEditing, initialValues }) {
     const { object } = toggleEditing;
 
@@ -141,7 +152,8 @@ function mapDispatchToProps(dispatch) {
 CommentItem = reduxForm({
     form: 'commentEdit',
     enableReinitialize: true,
-    keepDirtyOnReinitialize: true
+    keepDirtyOnReinitialize: true,
+    validate,
 })(CommentItem)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)

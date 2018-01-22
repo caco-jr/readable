@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import CustomInput from '../../CustomInput'
+import { closeModal } from '../../../services/redux/actions/index';
 
-let PostForm = ({ handleSubmit, categories }) => {
+let PostForm = ({ handleSubmit, categories, closeModal }) => {
     return (
         <section className="addpost__form">
             <form onSubmit={handleSubmit} >
@@ -51,8 +52,15 @@ let PostForm = ({ handleSubmit, categories }) => {
                     className="addpost__form" />
 
                 <button
+                    type="button"
+                    className="addpost__form--button cancel"
+                    onClick={() => closeModal()}>
+                    Cancelar
+                </button>
+
+                <button
                     type="submit"
-                    className="addpost__form--button" >
+                    className="addpost__form--button publish" >
                     Publicar
                 </button>
             </form>
@@ -60,12 +68,46 @@ let PostForm = ({ handleSubmit, categories }) => {
     )
 }
 
+//Post side validation
+function validate(values) {
+    const errors = {};
+
+    if (!values.title || values.title.trim() === '') {
+        errors.title = 'Campo obrigatório';
+    }
+
+    if (values.title && values.title.length > 25) {
+        errors.title = 'Too big, max 25 characters';
+    }
+
+    if (!values.author || values.author.trim() === '') {
+        errors.author = 'Campo obrigatório';
+    }
+
+    if (values.author && values.author.length > 25) {
+        errors.author = 'Too big, max 10 characters';
+    }
+
+    if (!values.body || values.body.trim() === '') {
+        errors.body = 'Campo obrigatório';
+    }
+
+    return errors;
+}
+
 function mapStateToProps({ categories }) {
     return { categories }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        closeModal: () => dispatch(closeModal())
+    }
+}
+
 PostForm = reduxForm({
-    form: 'postForm'
+    form: 'postForm',
+    validate
 })(PostForm);
 
-export default connect(mapStateToProps)(PostForm)
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm)

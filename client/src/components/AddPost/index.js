@@ -15,7 +15,7 @@ class AddPost extends PureComponent {
     }
 
     submit = (values) => {
-        const { addPost } = this.props;
+        const { addPost, closeModal } = this.props;
 
         const post = {
             id: uuid().split("-").join(""),
@@ -30,6 +30,7 @@ class AddPost extends PureComponent {
         }
 
         addPost(post);
+        closeModal();
     }
 
     render() {
@@ -57,10 +58,6 @@ class AddPost extends PureComponent {
                     <h2 className="addpost--title" > Novo post </h2>
 
                     <PostForm onSubmit={this.submit} />
-
-                    <button onClick={() => closeModal()}>
-                        Cancelar
-                    </button>
                 </ReactModal>
             </Fragment>
         );

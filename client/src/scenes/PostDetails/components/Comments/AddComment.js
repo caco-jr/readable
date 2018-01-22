@@ -35,6 +35,26 @@ const AddComment = props => {
     )
 }
 
+//Post side validation
+function validate(values) {
+    const errors = {};
+
+    if (!values.author || values.author.trim() === '') {
+        errors.author = 'Campo obrigatório';
+    }
+
+    if (values.author && values.author.length > 10) {
+        errors.author = 'Too big, max 10 characters';
+    }
+
+    if (!values.body || values.body.trim() === '') {
+        errors.body = 'Campo obrigatório';
+    }
+
+    return errors;
+}
+
 export default reduxForm({
-    form: 'commentForm'
+    form: 'commentForm',
+    validate,
 })(AddComment);
