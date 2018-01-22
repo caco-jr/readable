@@ -1,22 +1,18 @@
-# Readable API Server
+# Udacity Project: Readable
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+React / Redux project for React Nanodegree from Udacity.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
-
-## Start Developing
-
-To get started developing right away:
+## Start use
 
 * Install and start the API server
-    - `cd api-server`
+    - `cd server`
     - `npm install`
-    - `node server`
+    - `node server` or `npm start`
+
 * In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
+    - `cd client`
     - `npm start`
 
 ## API Server
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+Information about the API server and how to use it can be found in its [README file](server/README.md).
