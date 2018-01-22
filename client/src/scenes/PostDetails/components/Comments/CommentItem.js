@@ -4,6 +4,8 @@ import { Field, reduxForm } from 'redux-form'
 import { getTime } from '../../../../services/utils/util'
 import DeleteButton from '../DeleteButton'
 import Vote from '../../../../components/Vote'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faClock, faUser, faSave, faEdit } from '@fortawesome/fontawesome-free-regular';
 import {
     enableEditing,
     disableEditing,
@@ -43,7 +45,7 @@ let CommentItem = props => {
     return (
         <section className="comment__item" >
             <form onSubmit={handleSubmit} >
-                <h3>
+                <h3 className="comment__item--title">
                     {
                         handleToggle(
                             <Field
@@ -51,40 +53,73 @@ let CommentItem = props => {
                                 component="input"
                                 type="text"
                                 placeholder="Escreva o seu comentário"
-                                className="comment__item--input"
+                                className="comment__item--title-input"
                             />,
                             body
                         )
                     }
                 </h3>
 
-                <p> {author} </p>
+                <span className="comment__item--author">
+                    <FontAwesomeIcon
+                        className={`details__form--author-icon`}
+                        icon={faUser} />
+                    {author}
+                </span>
 
-                <Vote
-                    id={id}
-                    className="comment__item--vote"
-                    component="comment" >
-                    {voteScore}
-                </Vote>
+                <span className="comment__item--time">
+                    <FontAwesomeIcon
+                        className={`details__form--time-icon`}
+                        icon={faClock} />
+                    {getTime(timestamp)}
+                </span>
 
-                <button
-                    onClick={() => handleEdit()}
-                    type={handleToggle("button", "submit")} >
-                    {handleToggle("Salvar", "Editar")}
-                </button>
+                <div className="comment__item--buttons" >
+                    <Vote
+                        id={id}
+                        className="comment__item--vote"
+                        component="comment" >
+                        {voteScore}
+                    </Vote>
 
-                {
-                    handleToggle(
-                        <button type="button" onClick={() => disableEditing('comment')} >
-                            Cancelar
-                        </button>,
-                        null
-                    )
-                }
+                    <button
+                        onClick={() => handleEdit()}
+                        className="comment__item--button save"
+                        type={handleToggle("button", "submit")} >
+                        {handleToggle(
+                            <span>
+                                <FontAwesomeIcon
+                                    className={`comment__item--button-icon`}
+                                    icon={faSave} />
+                                Salvar
+                        </span>,
+                            <span>
+                                <FontAwesomeIcon
+                                    className={`comment__item--button-icon`}
+                                    icon={faEdit} />
+                                Editar
+                        </span>
+                        )}
+                    </button>
 
-                <span> {getTime(timestamp)} </span>
+                    {
+                        handleToggle(
+                            <button
+                                type="button"
+                                className="comment__item--button"
+                                onClick={() => disableEditing('comment')} >
+                                Cancelar
+                            </button>,
+                            null
+                        )
+                    }
 
-                <DeleteButton component="comment" id={id} />
+                    <DeleteButton
+                        id={id}
+                        component="comment"
+                        text="Apagar Comentário"
+                        className="comment__item--button" />
+                </div>
             </form>
         </section>
     )
