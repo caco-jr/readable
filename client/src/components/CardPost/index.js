@@ -5,11 +5,12 @@ import { withRouter } from 'react-router-dom'
 import { setSelected } from '../../services/redux/actions';
 import { truncateString } from '../../services/utils/util';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faComments } from '@fortawesome/fontawesome-free-regular';
+import { faComments, faUser } from '@fortawesome/fontawesome-free-regular';
 import Vote from '../Vote'
 
 const CardPost = ({ post, posts, setSelected, selected, history }) => {
     const {
+        author,
         id,
         title,
         commentCount,
@@ -39,6 +40,13 @@ const CardPost = ({ post, posts, setSelected, selected, history }) => {
             </Vote>
 
             <section className="card__post--extra" >
+                <span className="card__post--author">
+                    <FontAwesomeIcon
+                        className={`card__post--author-icon`}
+                        icon={faUser} />
+                    {author}
+                </span>
+
                 <span className="card__post--category"> {category} </span>
 
                 <span className="card__post--comment" >
