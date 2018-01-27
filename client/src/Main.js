@@ -9,10 +9,10 @@ const Main = props => (
     <main id="main">
         <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/404" component={NoMatch} />
             <Route exact path="/:category/:id" component={PostDetails} />
             <Route exact path="/:category" component={Category} />
             <Route component={NoMatch} />
-            <Route exact path="/404" component={NoMatch} />
         </Switch>
 
         {props.children}
