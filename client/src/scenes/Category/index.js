@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getPostsCategory } from '../../services/redux/actions';
+import { getPostsCategory, getPosts } from '../../services/redux/actions';
 import CardPost from '../../components/CardPost'
 import OrderBy from '../../components/OrderBy'
 
 class Category extends Component {
     componentDidMount() {
         const { category } = this.props.match.params;
+        const { getPostsCategory, posts, getPosts } = this.props;
 
-        this.props.getPostsCategory(category);
+        getPostsCategory(category);
+
+        if (Object.keys(posts).length === 0) {
+            getPosts();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
+        const { getPostsCategory } = this.props
         const { category } = this.props.match.params;
         const { params } = nextProps.match;
 
         if (params.category !== category) {
-            this.props.getPostsCategory(params.category);
+            getPostsCategory(params.category);
         }
     }
 
@@ -24,8 +30,8 @@ class Category extends Component {
         const { postsCategory } = this.props.categories;
 
         return (
-            <section className="container" >
-                <OrderBy />
+            <section className="container post__list" >
+                <OrderBy page="Category" />
 
                 <section className="row">
                     {
@@ -43,13 +49,14 @@ class Category extends Component {
     }
 }
 
-function mapStateToProps({ categories }) {
-    return { categories }
+function mapStateToProps({ categories, posts }) {
+    return { categories, posts }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         getPostsCategory: (category) => dispatch(getPostsCategory(category)),
+        getPosts: () => dispatch(getPosts()),
     }
 }
 

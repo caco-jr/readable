@@ -20,6 +20,7 @@ import {
     OPEN_MODAL,
     CLOSE_MODAL,
     DELETE_POST,
+    ORDER_BY_POSTS_CATEGORY,
 } from '../actions/actionTypes'
 
 const category = {
@@ -39,6 +40,14 @@ function categories(state = category, action) {
             return {
                 ...state,
                 postsCategory: action.posts
+            }
+
+        case ORDER_BY_POSTS_CATEGORY:
+            return {
+                ...state,
+                postsCategory: action.order ?
+                    state.postsCategory.sort((a, b) => a.voteScore < b.voteScore) :
+                    state.postsCategory.sort((a, b) => a.timestamp < b.timestamp)
             }
 
         default:

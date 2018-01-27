@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { orderBy } from '../../services/redux/actions/index';
+import { orderBy, orderByPostsCategory } from '../../services/redux/actions/index';
 
 class OrderBy extends PureComponent {
     state = {
@@ -8,11 +8,12 @@ class OrderBy extends PureComponent {
     }
 
     handleToggle = () => {
-        const { order } = this.state
-        const { orderBy } = this.props
+        const { order } = this.state;
+        const { orderBy, orderByPostsCategory, page } = this.props;
 
-        this.setState({ order: !this.state.order })
-        orderBy(order)
+        this.setState({ order: !this.state.order });
+
+        page === "Home" ? orderBy(order) : orderByPostsCategory(order);
     }
 
     render() {
@@ -43,6 +44,7 @@ class OrderBy extends PureComponent {
 function mapDispatchToProps(dispatch) {
     return {
         orderBy: (order) => dispatch(orderBy(order)),
+        orderByPostsCategory: (order) => dispatch(orderByPostsCategory(order)),
     }
 }
 

@@ -14,7 +14,7 @@ class PostList extends PureComponent {
 
         return (
             <section className="container post__list">
-                <OrderBy />
+                <OrderBy page="Home" />
 
                 <section className="row">
                     {

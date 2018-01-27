@@ -3,6 +3,7 @@ export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const GET_POSTS = "GET_POSTS";
 export const ORDER_BY = "ORDER_BY";
+export const ORDER_BY_POSTS_CATEGORY = "ORDER_BY_POSTS_CATEGORY"
 export const DELETE_POST = "DELETE_POST";
 export const UP_VOTE_POST = "UP_VOTE_POST";
 export const DOWN_VOTE_POST = "DOWN_VOTE_POST";
