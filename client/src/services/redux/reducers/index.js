@@ -2,6 +2,7 @@ import { reducer as formReducer } from 'redux-form'
 import { combineReducers } from 'redux'
 import {
     GET_POSTS,
+    ORDER_BY,
     GET_CATEGORIES,
     GET_POSTS_CATEGORY,
     SET_SELECTED,
@@ -54,6 +55,14 @@ function posts(state = {}, action) {
                 ...state,
                 allPosts: action.posts
             };
+
+        case ORDER_BY:
+            return {
+                ...state,
+                allPosts: action.order ?
+                    state.allPosts.sort((a, b) => a.voteScore < b.voteScore) :
+                    state.allPosts.sort((a, b) => a.timestamp < b.timestamp)
+            }
 
         case ADD_POST:
             return {

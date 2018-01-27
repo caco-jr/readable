@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getPostsCategory } from '../../services/redux/actions';
 import CardPost from '../../components/CardPost'
+import OrderBy from '../../components/OrderBy'
 
 class Category extends Component {
     componentDidMount() {
@@ -24,6 +25,8 @@ class Category extends Component {
 
         return (
             <section className="container" >
+                <OrderBy />
+
                 <section className="row">
                     {
                         Object.keys(postsCategory).length > 0 && (

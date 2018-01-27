@@ -21,6 +21,12 @@ export function getPostsCategory(category) {
     }
 }
 
+export function orderBy(order) {
+    return dispatch => {
+        dispatch({ type: actionTypes.ORDER_BY, order })
+    };
+}
+
 export function getPosts() {
     return dispatch => {
         ReadableAPI.getPosts()

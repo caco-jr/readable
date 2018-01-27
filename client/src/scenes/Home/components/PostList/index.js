@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { getPosts } from '../../../../services/redux/actions'
 import CardPost from '../../../../components/CardPost'
+import OrderBy from '../../../../components/OrderBy'
 
 class PostList extends PureComponent {
     componentDidMount() {
@@ -13,6 +14,8 @@ class PostList extends PureComponent {
 
         return (
             <section className="container post__list">
+                <OrderBy />
+
                 <section className="row">
                     {
                         Object.keys(posts).length > 0 && (
