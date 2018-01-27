@@ -2,7 +2,11 @@ import React from 'react'
 
 const NoMatch = () => {
     return (
-        <h1> Post Not Found </h1>
+        <section className="noMatch" >
+            <img src="http://i.imgur.com/qhMbkGi.jpg" alt="Confused Travolta" />
+            <h1 className="noMatch--title" > Ooops... </h1>
+            <p className="noMatch--text" > Página não encontrada :( </p>
+        </section>
     )
 }
 
