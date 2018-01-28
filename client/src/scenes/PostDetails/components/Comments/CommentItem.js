@@ -9,7 +9,7 @@ import { faClock, faUser, faSave, faEdit } from '@fortawesome/fontawesome-free-r
 import {
     enableEditing,
     disableEditing,
-} from '../../../../services/redux/actions'
+} from '../../../../services/redux/actions/toggleEditing'
 
 let CommentItem = props => {
     const {

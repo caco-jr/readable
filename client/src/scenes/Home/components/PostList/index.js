@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { getPosts } from '../../../../services/redux/actions'
+import { getPosts } from '../../../../services/redux/actions/post'
 import CardPost from '../../../../components/CardPost'
 import OrderBy from '../../../../components/OrderBy'
 

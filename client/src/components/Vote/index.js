@@ -5,9 +5,8 @@ import { faThumbsDown, faThumbsUp } from '@fortawesome/fontawesome-free-regular'
 import {
     downVoteComment,
     upVoteComment,
-    downVotePost,
-    upVotePost
-} from '../../services/redux/actions/index';
+} from '../../services/redux/actions/comment';
+import { downVotePost, upVotePost } from '../../services/redux/actions/post';
 
 const Vote = ({
     id,

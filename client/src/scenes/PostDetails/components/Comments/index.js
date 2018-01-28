@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid'
 import CommentItem from './CommentItem';
 import AddComment from './AddComment'
-import { addComment, editComment } from '../../../../services/redux/actions/index';
+import { addComment, editComment } from '../../../../services/redux/actions/comment';
 
 class CommentBox extends PureComponent {
     state = {

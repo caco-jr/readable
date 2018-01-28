@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { orderBy, orderByPostsCategory } from '../../services/redux/actions/index';
+import { orderBy } from '../../services/redux/actions/post';
+import { orderByPostsCategory } from '../../services/redux/actions/category';
 
 class OrderBy extends PureComponent {
     state = {

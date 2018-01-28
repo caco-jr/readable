@@ -8,7 +8,7 @@ import CustomInput from '../../../../../components/CustomInput'
 import {
     disableEditing,
     enableEditing,
-} from '../../../../../services/redux/actions/index';
+} from '../../../../../services/redux/actions/toggleEditing';
 
 let DetailForm = props => {
     const {

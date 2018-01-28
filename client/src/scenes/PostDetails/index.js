@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getPosts, setSelected } from '../../services/redux/actions';
+import { getPosts } from '../../services/redux/actions/post';
+import { setSelected } from '../../services/redux/actions/selected';
 import DetailBox from './components/Detail';
 import CommentBox from './components/Comments';
 

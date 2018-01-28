@@ -4,7 +4,8 @@ import Modal from 'react-modal';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
-import { addPost, openModal, closeModal } from '../../services/redux/actions/index';
+import { addPost } from '../../services/redux/actions/post';
+import { openModal, closeModal } from '../../services/redux/actions/modal';
 import iconPost from './images/newpost-icon.svg'
 
 class AddPost extends PureComponent {

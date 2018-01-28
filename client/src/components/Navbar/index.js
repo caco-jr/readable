@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getCategories } from '../../services/redux/actions'
+import { getCategories } from '../../services/redux/actions/category'
 import home from './images/home.svg'
 
 class Navbar extends PureComponent {

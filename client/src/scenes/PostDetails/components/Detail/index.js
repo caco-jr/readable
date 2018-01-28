@@ -5,7 +5,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faClock, faUser } from '@fortawesome/fontawesome-free-regular';
 import Vote from '../../../../components/Vote'
 import DetailForm from './DetailForm'
-import { editPost } from '../../../../services/redux/actions/index';
+import { editPost } from '../../../../services/redux/actions/post';
 
 const DetailBox = props => {
     const {

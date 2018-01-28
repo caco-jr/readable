@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/fontawesome-free-regular';
-import { deleteComment, deletePost } from '../../../../services/redux/actions/index';
+import { deletePost } from '../../../../services/redux/actions/post';
+import { deleteComment } from '../../../../services/redux/actions/comment';
 
 const DeleteButton = ({
     id,

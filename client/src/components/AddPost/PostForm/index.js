@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import CustomInput from '../../CustomInput'
-import { closeModal } from '../../../services/redux/actions/index';
+import { closeModal } from '../../../services/redux/actions/modal';
 
 let PostForm = ({ handleSubmit, categories, closeModal }) => {
     return (

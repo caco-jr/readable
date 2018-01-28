@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
-import { setSelected } from '../../services/redux/actions';
+import { setSelected } from '../../services/redux/actions/selected';
 import { truncateString } from '../../services/utils/util';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faComments, faUser } from '@fortawesome/fontawesome-free-regular';
