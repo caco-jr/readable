@@ -55,15 +55,11 @@ class PostDetails extends PureComponent {
     }
 }
 
-function mapStateToProps({ selected, posts }) {
-    return { selected, posts }
-}
+const mapStateToProps = ({ selected, posts }) => ({ selected, posts })
 
-function mapDispatchToProps(dispatch) {
-    return {
-        getPosts: () => dispatch(getPosts()),
-        setSelected: (who, object) => dispatch(setSelected(who, object)),
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    getPosts: () => dispatch(getPosts()),
+    setSelected: (who, object) => dispatch(setSelected(who, object)),
+})
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetails));
