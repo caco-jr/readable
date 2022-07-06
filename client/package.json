@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome": "^1.1.2",
     "@fortawesome/fontawesome-free-regular": "^5.0.4",
     "@fortawesome/react-fontawesome": "0.0.17",
-    "moment": "^2.20.1",
+    "moment": "^2.29.4",
     "node-sass-chokidar": "0.0.3",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
